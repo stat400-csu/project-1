@@ -3,7 +3,7 @@ title: "Outline"
 output: pdf_document
 ---
 
-
+Planning: 
 * Trying to replicate - but no data. 
 
 * Normally distributed random number generator -> Theoretical numbers for values
@@ -13,8 +13,8 @@ output: pdf_document
 * Using the Monte Carlo formula given in the paper. 
 
 * Choosing a different disease - finding its quanta
-    - 
-    - 
+    - (disease)
+    - (info on disease)
 
 * Change values of variables - bigger/smaller room, dif # of infected, etc. 
 
