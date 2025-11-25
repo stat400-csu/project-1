@@ -17,3 +17,4 @@ output: pdf_document
     - 
 
 * Change values of variables - bigger/smaller room, dif # of infected, etc. 
+
