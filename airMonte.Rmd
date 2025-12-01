@@ -16,36 +16,6 @@ library(broom)
 library(ggplot2)
 ```
 
-```{r setting up}
-
-oh <- 100
-mean_quanta_hr <-  
-sd_quanta <-
-  
-mean_m3_hr <- 
-sd_m3 <- 
-  
-mean_vol <-
-sd_vol <-
-  
-mean_ACH <-
-sd_ACH <-
-  
-time_exp <- 
-
-infected_ind <- 
-
-
-q <- rnorm(n, mean_quanta_hr, sd_quanta)
-
-p <- rnorm(n, mean_m3_hr, sd_m3)
-
-V <- rnorm(n, mean_vol, sd_vol)
-
-ACH <- rnorm(n, mean_ACH, sd_ACH)
-
-```
-
 
 ```{r setting}
 m <- 10000
