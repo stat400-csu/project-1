@@ -1,0 +1,7 @@
+---
+title: "Monte Carlo Replication for Infection Rates"
+author: "Robin Thrush and Kaitlynn Walston
+output: pdf_document
+---
+
+

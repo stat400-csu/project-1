@@ -90,9 +90,8 @@ but I = 1 infectious individual per simulation
 
 
 ```{r Tuberculosis}
-
 better_monte <- function(m = 10000, dis_quanta, quanta_sd, room_size = 132, 
-                         infected_individuals = 1, room_venti_rate = 4){
+                         infected_individuals = 1, room_venti_rate = 4){ 
   probability_inf <- numeric(m)
   num_new_infect <- numeric(m)
   sus_persons <- numeric(m)
@@ -155,4 +154,17 @@ dens$y <- dens$y / sum(dens$y) *100
 
 plot(dens, main = "TB: Prob Freq Distrib 2")
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
 
