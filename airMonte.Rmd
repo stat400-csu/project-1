@@ -157,7 +157,7 @@ plot(dens, main = "TB: Prob Freq Distrib 2")
 
 
 
-
+In their study: occupancy levels, waiting times, and ventilation rate varied.
 
 
 

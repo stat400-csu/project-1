@@ -6,4 +6,11 @@ output: pdf_document
 ---
 
 ## Introduction:
-This paper is... 
+*Beggs, et al.* constructed a stochastic Monte Carlo to better understand the transmission of airborne infection in a hypothetical hospital area with the volume of 132m^3. The variables they let vary were occupancy levels, waiting time, and ventilation rate. They simulated this for three different diseases that are known for being easily transmissible in close quarters, tuberculosis, measles, and influenza. When we chose this study
+
+
+
+- Variables
+- What we're doing
+- Results
+- Plots
