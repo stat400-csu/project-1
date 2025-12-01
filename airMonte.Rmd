@@ -131,9 +131,12 @@ In their study: occupancy levels, waiting times, and ventilation rate varied.
 
 
 
+*Wanting to compare COVID/SARS quantum to the already listed diseases
+Quantum: generation rate of 18-48 h^-1  for COVID-19
+Infection prob: less than 1% requires ventilation rate > 100-350 m^3/h per infector, and 1200-4000 m^3/h per infector for 0.25 h and 3 h of exposure
+Wells-Riley equation: $P = C/S = 1-e^{Iqpt/Q}$
 
-
-
+https://link.springer.com/article/10.1007/s12273-020-0703-5 
 
 
 
