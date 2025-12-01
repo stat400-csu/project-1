@@ -20,7 +20,10 @@ The study uses a Gammaitoni-Nucci Equation to build a stochastic Monte Carlo
 model that through many simulations would spit out a probability of susceptible individuals acquiring the air-borne infection. The number of new infections was calculated by multiplying the number of susceptible individuals by the probability of acquiring the infection. 
 
 ## Replicating Process:
-For this, we wanted to make it a function
+Constructing a function that would replicate the results of this study was nice since their equations, variables, and steps provided was detailed. We started by defining a function that takes the number of simulations, the mean quanta rate, the standard deviation of the quanta rate, room volume, the number of infected individuals, and the room ventilation rate. Inside, we need variables for the probability of infection for susceptible individuals, the number of newly infected individuals, and the number of susceptible individuals. Inside our for loop, we define the variables: pulmonary ventilation rate, the quantum generation rate, the exposure time, initial number of susceptible individuals at time = 0. The 4 variables mentioned above are our normally distributed randomly generated values (using *rnorm()*), with each of their means and standard deviations defined from the study. We define total rate of quanta generation by all infectors (quanta/min) by multiplying out number of infected individuals by the quanta rate.
+
+
+
 
 
 - Variables
