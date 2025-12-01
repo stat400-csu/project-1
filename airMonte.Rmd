@@ -1,0 +1,158 @@
+---
+title: "airMONTE"
+output: pdf_document
+---
+
+```{r  reproducibility}
+set.seed(400)
+```
+
+```{r libraries}
+library(dplyr)
+library(stats)
+library(tidyr)
+library(tidyverse)
+library(broom)
+library(ggplot2)
+```
+
+```{r setting up}
+
+oh <- 100
+mean_quanta_hr <-  
+sd_quanta <-
+  
+mean_m3_hr <- 
+sd_m3 <- 
+  
+mean_vol <-
+sd_vol <-
+  
+mean_ACH <-
+sd_ACH <-
+  
+time_exp <- 
+
+infected_ind <- 
+
+
+q <- rnorm(n, mean_quanta_hr, sd_quanta)
+
+p <- rnorm(n, mean_m3_hr, sd_m3)
+
+V <- rnorm(n, mean_vol, sd_vol)
+
+ACH <- rnorm(n, mean_ACH, sd_ACH)
+
+```
+
+
+```{r setting}
+m <- 10000
+
+monte_AIR <- function(m) {
+  storing <- numeric(m)
+  for (i in 1:m){
+    p <- rnorm(1, mean = 0.48, sd = 0.20)
+    I <- 1
+    phi <- rnorm(1, mean = 100, sd = 20)
+    V <- 132
+    N <- rnorm(1, mean = 3, sd = 0.5)
+    t <- rnorm(1, mean = 0.5, sd = 0.167)
+  
+    form <- ((p*I*phi)/V) * ((N*t + exp(-N*t) - 1) / (N^2))
+  
+    storing[i] <- 1 - exp(-form)
+  }
+  return(storing)
+}
+
+we_want <- monte_AIR(m)
+
+mean(we_want)
+
+hist(we_want , breaks = 35, main = "Monte Carlo Air Replication")
+```
+
+## For the different quantas:
+TB: mean = 12.7,  SD = 3.0
+Flu: mean = 100,  SD = 25.0
+Measles: mean = 570,  SD = 143.0
+
+Waiting room Volume: 132 (m^3)
+
+Mean Pulmonary Ventilation Rate: mean = 0.48, SD = 0.2
+Mean Waiting Time: t = 30 min,  SD = 10 min
+Room Ventilation Rate: mean = 4
+Susceptibles Present: mean = 19,  SD = 10
+
+but I = 1 infectious individual per simulation
+
+
+```{r Tuberculosis}
+
+better_monte <- function(m = 10000, dis_quanta, quanta_sd, room_size = 132, 
+                         infected_individuals = 1, room_venti_rate = 4){
+  probability_inf <- numeric(m)
+  num_new_infect <- numeric(m)
+  sus_persons <- numeric(m)
+
+  for(i in 1:m) {
+    
+    p_2 <- max(rnorm(1, mean = 0.48, sd = 0.20), 0)
+    phi_2 <- max(rnorm(1, mean = dis_quanta, sd = quanta_sd),0)
+    t_2 <- max(rnorm(1, mean = 0.5, sd = 0.167), 0)
+    S0 <- max(round(rnorm(1, mean = 19, sd = 10)),1)
+    
+    q_2 <- infected_individuals * phi_2
+ 
+    n_t <- (q_2/room_venti_rate) * (1 - exp(-room_venti_rate*t_2))
+    
+    nucci <- ((p_2*q_2)/room_size) * 
+      ((room_venti_rate * t_2 + exp(-room_venti_rate * 
+                                      t_2) -1) / (room_venti_rate^2))
+    
+    S_t <- S0 * exp(-nucci)
+    
+    inf <- S0 - S_t
+    
+    sus_prob <- inf / S0
+    
+    probability_inf[i] <- sus_prob
+    num_new_infect[i] <- inf
+    sus_persons[i] <- S_t
+  }
+  
+  return(list(prob = probability_inf,
+              infections = num_new_infect,
+              survivors = sus_persons,
+              summary = list(mean_prob = mean(probability_inf),
+                             mean_infections = mean(num_new_infect),
+                             prob_quantiles = quantile(probability_inf, 
+                                                       c(0.25, 0.5, 0.75, 
+                                                         0.9, 0.95)),
+                             inf_quantiles = quantile(num_new_infect, 
+                                                      c(0.25, 0.5, 0.75, 
+                                                        0.9, 0.95)))))
+
+}
+
+TB <- better_monte(m, dis_quanta = 12.7, quanta_sd = 3.0,
+                   room_size = 132, infected_individuals = 1, 
+                   room_venti_rate = 4)
+
+mean(TB$prob)
+h <- hist(TB$prob, breaks = 35, main = "TB Replication")
+
+h$counts <- h$counts / sum(h$counts) * 100
+
+plot(h, main = "TBL Prob Freq Distrib")
+
+
+dens <- density(TB$prob)
+
+dens$y <- dens$y / sum(dens$y) *100
+
+plot(dens, main = "TB: Prob Freq Distrib 2")
+```
+
