@@ -13,6 +13,17 @@ The study used a Gammaitoni-Nucci Equation to build a predictive model that woul
 
 
 - Variables
-- What we're doing
+We are looking at: the number of susceptible infividuals (S), the probability of infection on susceptible individuals (P), the pulmonary ventilation rate (p), the number of infectors (I), the room volume (V), the room ventilation rate (N), the exposure time of susceptible individuals (t), the number of quanta of infection in the air (n), the quantum generation rate (ϕ), and the total rate of quanta generation by all infectors (q = Iϕ)
+
+
+- What we're doing (process)
+
+
+
+
 - Results
+
+
+
+
 - Plots
