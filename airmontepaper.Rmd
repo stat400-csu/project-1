@@ -1,8 +1,9 @@
 ---
 title: "Monte Carlo Replication for Infection Rates"
 date: "December 5th, 2025"
-author: "Robin Thrush and Kaitlynn Walston
-output: pdf_document
+author: "Robin Thrush and Kaitlynn Walston"
+output: pdf_document:
+  latex_engine: xelatex
 ---
 
 ## Introduction:
