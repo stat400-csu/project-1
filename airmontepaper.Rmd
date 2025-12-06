@@ -7,29 +7,21 @@ output: pdf_document:
 ---
 
 ## Introduction:
-*Beggs, et al.* constructed a stochastic Monte Carlo to better understand the 
-transmission of airborne infection in a hypothetical hospital area with the 
-volume of 132m^3. The variables they let vary were occupancy levels, waiting 
-time, and ventilation rate. They simulated this for three different diseases 
-that are known for being easily transmissible in close quarters, tuberculosis, 
-measles, and influenza. Our goal using this study is to attempt to replicate 
-their results, run an entirely different disease through the Monte Carlo, and 
-see what the results would look like adjusting the room size and exposure time.
+*Beggs, et al.* constructed a stochastic Monte Carlo to be able to better understand the transmission of airborne infection in a hypothetical hospital area where the volume was set to 132m^3. The variables that they let vary were: occupancy levels, waiting 
+time, and ventilation rate. They simulated this for three different diseases that are known for being easily transmissible in close quarters: tuberculosis, measles, and influenza. Our goal for this project is to attempt to replicate their results in the study, as well as be able to run an entirely different disease through the Monte Carlo simulation we create in order to see what the results would look like when adjusting the room size and exposure time.
 
 ## Equation Explanation:
-The study uses a Gammaitoni-Nucci Equation to build a stochastic Monte Carlo 
-model that through many simulations would spit out a probability of susceptible individuals acquiring the air-borne infection. The number of new infections was calculated by multiplying the number of susceptible individuals by the probability of acquiring the infection. 
+The study uses a Gammaitoni-Nucci Equation to build a stochastic Monte Carlo model that, through many simulations, would spit out the estimated probability that the susceptible individuals would acquire the air-borne infection. The number of new infections was calculated by multiplying the number of susceptible individuals by the probability of acquiring the infection. 
 
 ## Replicating Process:
-Constructing a function that would replicate the results of this study was nice since their equations, variables, and steps provided was detailed. We started by defining a function that takes the number of simulations, the mean quanta rate, the standard deviation of the quanta rate, room volume, the number of infected individuals, and the room ventilation rate. Inside, we need variables for the probability of infection for susceptible individuals, the number of newly infected individuals, and the number of susceptible individuals. Inside our for loop, we define the variables: pulmonary ventilation rate, the quantum generation rate, the exposure time, initial number of susceptible individuals at time = 0. The 4 variables mentioned above are our normally distributed randomly generated values (using *rnorm()*), with each of their means and standard deviations defined from the study. We define total rate of quanta generation by all infectors (quanta/min) by multiplying out number of infected individuals by the quanta rate.
-
-
-
+Constructing a function that would replicate the results of this study was nice since their equations, variables, and steps provided was detailed. We started by defining: a function that takes the number of simulations, the mean quanta rate, the standard deviation of the quanta rate, room volume, the number of infected individuals, and the room ventilation rate. We needed variables for: the probability of infection for the susceptible individuals, the number of newly infected individuals, and the number of susceptible individuals. Inside our for loop, we define the variables: pulmonary ventilation rate, the quantum generation rate, the exposure time, initial number of susceptible individuals at time = 0. The 4 variables mentioned above are our normally distributed randomly generated values (using *rnorm()*), with each of their means and standard deviations defined from the study. We define total rate of quanta generation by all infectors (quanta/min) by multiplying out number of infected individuals by the quanta rate.
 
 
 - Variables
-We are looking at: the number of susceptible infividuals (S), the probability of infection on susceptible individuals (P), the pulmonary ventilation rate (p), the number of infectors (I), the room volume (V), the room ventilation rate (N), the exposure time of susceptible individuals (t), the number of quanta of infection in the air (n), the quantum generation rate (ϕ), and the total rate of quanta generation by all infectors (q = Iϕ)
+We are looking at: the number of susceptible individuals (S), the probability of infection on susceptible individuals (P), the pulmonary ventilation rate (p), the number of infectors (I), the room volume (V), the room ventilation rate (N), the exposure time of susceptible individuals (t), the number of quanta of infection in the air (n), the quantum generation rate (ϕ), and the total rate of quanta generation by all infectors (q = Iϕ)
 
+ - Assumptions in the study:
+The researchers in the study set specific assumptions in order to make sure they could easily understand their experiment. They set the assumptions to be that: only one infectious individual is present in their waiting room, that the suspectible individuals can get infected but can not infect others, outside air is constantly being ventilated into the room, and that the air is well mixed with the infectious particles evenly distributed throughout the room. 
 
 - What we're doing (process)
 
