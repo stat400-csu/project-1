@@ -24,13 +24,8 @@ The researchers in the study set specific assumptions in order to make sure they
 
 # What we're doing (process)
 
-
-
 # Results
-
-
 
 # Plots
 
-
-
+tbd 
