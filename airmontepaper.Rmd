@@ -22,10 +22,9 @@ We are looking at the same variables that the researchers used, which are: the n
 # Assumptions in the study:
 The researchers in the study set specific assumptions in order to make sure they could easily understand their experiment. They set the assumptions to be that: only one infectious individual is present in their waiting room, that the susceptible individuals can get infected but can not infect others, outside air is constantly being ventilated into the room, and that the air is well mixed with the infectious particles evenly distributed throughout the room. 
 
-# What we're doing (process)
+TBD sections: 
+ What we're doing (process)
 
-# Results
+ Results
 
-# Plots
-
-tbd 
+ Plots
