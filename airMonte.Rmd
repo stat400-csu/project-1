@@ -44,6 +44,65 @@ mean(we_want)
 hist(we_want , breaks = 35, main = "Monte Carlo Air Replication")
 ```
 
+
+```{r}
+# Wells-Riley formula: 
+
+## vent_mean = 4 <- ventilation rate
+## breath_mean = 0.48 <- pumonary ventilation rate
+## time_mean = 0.5 <- 30min /1 hr
+
+air_monte <- function(m = 10000, quanta_mean, quanta_sd, 
+                      room_vol=132, infect=1, vent_mean=4, vent_sd=1, 
+                      breath_mean=0.48, breath_sd=0.2, 
+                      time_mean=0.5, time_sd=0.167, s_mean = 19, s_sd=10){
+  prob_vec <- numeric(m)
+  infect_vect <- numeric(m)
+  s_after <- numeric(m)
+  
+  for (i in 1:m) {
+    p <- max(rnorm(1, breath_mean, breath_sd), 0)
+    phi <- max(rnorm(1, quanta_mean, quanta_sd), 0)
+    t <- max(rnorm(1, time_mean, time_sd), 0)
+    Q <- max(rnorm(1, vent_mean, venth_sd), 0.01)
+    S0 <- max(round(rnorm(1, s_mean, s_sd)), 1)
+    
+      # exposure term
+    X <- (infect * phi * p * t) / Q
+    
+      # infection prob. 
+    P <- 1 - exp(-X)
+    
+      # expected infections
+    exp_inf <- S0 * P
+    
+    prob_vec[i] <- P
+    infect_vect[i] <- exp_inf
+    s_after[i] <- S0 - exp_inf
+  }
+ 
+  return(list(
+    prob=prob_vec, infections=infect_vect, non_infected = s_after,
+    summary = list(
+      mean_prob = mean(prob_vec),
+      mean_infections = mean(inf_vect),
+      prob_quantiles = quantile(prob_vec, c(0.25,0.5,0.75,0.9,0.95)),
+      inf_quantiles = quantile(infect_vect, c(0.25,0.5,0.75,0.9,0.95))
+    )
+  ))
+}
+
+
+
+
+```
+
+
+
+
+
+
+
 ## For the different quantas:
 TB: mean = 12.7,  SD = 3.0
 Flu: mean = 100,  SD = 25.0
