@@ -16,6 +16,12 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Article
 
+We found an article that attempts to predict the infection rate of an airborne disease when waiting in a waiting room. They did their study on TB, Measles, and the Flu. They had had specific requirements of room size, ventilation rate, ...
+
+# Assumptions
+- Only one infected person in the waiting room
+- Once infected, the person can not infect others
+- The air being ventilated throught the room is mixed air and infection (not being filtered)
 
 ## Replication
 
