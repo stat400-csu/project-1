@@ -91,10 +91,6 @@ air_monte <- function(m = 10000, quanta_mean, quanta_sd,
     )
   ))
 }
-
-
-
-
 ```
 
 
@@ -228,6 +224,58 @@ plot(densFLU, main = "Influenza: Prob Freq Distrib 2")
 ```
 
 
+## Extended Section:
+(Where we run through SARS quanta and compare it to the 3 other diseases from 
+the study)
+Reasoning: To see the results of a different airborne disease and compare it to 
+the other disease results.
+
+and 
+
+(Where we're running different simulations, messing with exposure time, # of
+infected individuals, and room size)
+Reasoning: Since waiting rooms are not a universal size, exposure times are not 
+set, and # of infected individuals can vary, it makes sense to investigate 
+the results that come from these changes.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -249,9 +297,9 @@ https://link.springer.com/article/10.1007/s12273-020-0703-5
 sars_mean <- 2.7  #mean quanta per hour
 sars_sd <- 1.2
 
-sars <- better_monte(m, dis_quanta = sars_mean, quanta_sd = sars_sd,
+sars <- better_monte(10000, dis_quanta = sars_mean, quanta_sd = sars_sd,
                    room_size = 132, infected_individuals = 1, room_venti_rate = 4)
-summary(sars)
+
 mean(sars$prob)
 
 ```
