@@ -1,0 +1,20 @@
+---
+title: "Slideshow"
+subtitle: "Stat 400"
+author: "Group 1: Robin Thrush and Kaitlynn Walston"
+output: 
+  ioslides_presentation:
+    css: styles.css
+---
+
+```{r setup, include=FALSE}
+set.seed(445)
+knitr::opts_chunk$set(echo = FALSE)
+```
+## Introduction
+
+
+## Lasso
+
+
+## 
