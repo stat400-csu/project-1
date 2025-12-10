@@ -7,7 +7,7 @@ output: pdf_document
 set.seed(400)
 ```
 
-```{r libraries}
+```{r libraries, message= FALSE}
 library(dplyr)
 library(stats)
 library(tidyr)
@@ -165,7 +165,7 @@ better_monte <- function(m = 10000, dis_quanta, quanta_sd, room_size = 132,
 
 }
 
-TB <- better_monte(m, dis_quanta = 12.7, quanta_sd = 3.0,
+TB <- better_monte(10000, dis_quanta = 12.7, quanta_sd = 3.0,
                    room_size = 132, infected_individuals = 1, 
                    room_venti_rate = 4)
 
@@ -183,6 +183,32 @@ dens$y <- dens$y / sum(dens$y) *100
 
 plot(dens, main = "TB: Prob Freq Distrib 2")
 ```
+
+
+```{r Measles}
+Measles <- better_monte(10000, dis_quanta = 100, quanta_sd = 25.0,
+                   room_size = 132, infected_individuals = 1, 
+                   room_venti_rate = 4)
+
+mean(Measles$prob)
+hMeas <- hist(Measles$prob, breaks = 35, main = "Measles Replication")
+
+hMeas$counts <- hMeas$counts / sum(hMeas$counts) * 100
+
+plot(h, main = "Measles Prob Freq Distrib")
+
+
+densM <- density(Measles$prob)
+
+densM$y <- densM$y / sum(densM$y) *100
+
+plot(densM, main = "Measles: Prob Freq Distrib 2")
+
+```
+
+
+
+
 
 
 
