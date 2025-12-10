@@ -203,8 +203,30 @@ densM <- density(Measles$prob)
 densM$y <- densM$y / sum(densM$y) *100
 
 plot(densM, main = "Measles: Prob Freq Distrib 2")
+```
+
+```{r Influenza}
+Influenza <- better_monte(10000, dis_quanta = 570, quanta_sd = 173.0,
+                   room_size = 132, infected_individuals = 1, 
+                   room_venti_rate = 4)
+
+mean(Influenza$prob)
+
+hFLU <- hist(Influenza$prob, breaks = 35, main = "Influenza Replication")
+
+hFLU$counts <- hFLU$counts / sum(hFLU$counts) * 100
+
+plot(hFLU, main = "Influenza Prob Freq Distrib")
+
+
+densFLU <- density(Influenza$prob)
+
+densFLU$y <- densFLU$y / sum(densFLU$y) *100
+
+plot(densFLU, main = "Influenza: Prob Freq Distrib 2")
 
 ```
+
 
 
 
