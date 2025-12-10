@@ -11,6 +11,7 @@ set.seed(400)
 library(dplyr)
 library(stats)
 library(tidyr)
+install.packages("tidyverse")
 library(tidyverse)
 library(broom)
 library(ggplot2)
@@ -197,6 +198,13 @@ Wells-Riley equation: $P = C/S = 1-e^{Iqpt/Q}$
 
 https://link.springer.com/article/10.1007/s12273-020-0703-5 
 
+```{r second disease: SARS}
+quant <- 2.7  #per hour
 
+
+
+
+
+```
 
 
