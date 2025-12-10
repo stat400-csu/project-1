@@ -238,14 +238,27 @@ Reasoning: Since waiting rooms are not a universal size, exposure times are not
 set, and # of infected individuals can vary, it makes sense to investigate 
 the results that come from these changes.
 
+Scenario 1:
+Room size is bigger than the one from the study
+Exposure time is longer?
+The number of infected individuals is the same
+
+Prediction: smaller probability
 
 
+Scenario 2:
+Room size is same than the one from the study
+Exposure time is longer
+The number of infected individuals is 2?
 
+Prediction: larger probability
 
+Scenario 3:
+Room size is bigger.
+Exposure time is shorter
+# of infected individuals is larger. 
 
-
-
-
+Prediction: smaller probability
 
 
 

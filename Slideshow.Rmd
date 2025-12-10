@@ -27,7 +27,7 @@ We found an article that attempts to predict the infection rate of an airborne d
 
 We had 2 main going into this project:
 - we wanted to test their infection rate they found by changing different variables such as room size and how many people were infected
-- we wanted to replicate their monte carlo approach and apply it to a different disease (SARS)
+- we wanted to replicate their Monte Carlo approach and apply it to a different disease (SARS)
 
 ## Results
 
