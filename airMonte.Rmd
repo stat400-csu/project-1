@@ -246,11 +246,13 @@ Wells-Riley equation: $P = C/S = 1-e^{Iqpt/Q}$
 https://link.springer.com/article/10.1007/s12273-020-0703-5 
 
 ```{r second disease: SARS}
-quant <- 2.7  #per hour
+sars_mean <- 2.7  #mean quanta per hour
+sars_sd <- 1.2
 
-
-
-
+sars <- better_monte(m, dis_quanta = sars_mean, quanta_sd = sars_sd,
+                   room_size = 132, infected_individuals = 1, room_venti_rate = 4)
+summary(sars)
+mean(sars$prob)
 
 ```
 
