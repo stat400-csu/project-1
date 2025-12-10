@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Article
 
-We found an article that attempts to predict the infection rate of an airborne disease when waiting in a waiting room. They did their study on TB, Measles, and the Flu. They had had specific requirements of room size, ventilation rate, ...
+In ur article. the researchers attempt to predict the infection rate of an airborne disease when waiting in a waiting room. They did their study on TB, Measles, and Influenza. They had had specific requirements of room size, ventilation rate, ...
 
 # Assumptions
 - Only one infected person in the waiting room

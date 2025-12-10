@@ -311,9 +311,25 @@ sars_mean <- 2.7  #mean quanta per hour
 sars_sd <- 1.2
 
 sars <- better_monte(10000, dis_quanta = sars_mean, quanta_sd = sars_sd,
-                   room_size = 132, infected_individuals = 1, room_venti_rate = 4)
+                   room_size = 132, infected_individuals = 1, 
+                   room_venti_rate = 4)
 
 mean(sars$prob)
+
+hSars <- hist(sars$prob, breaks = 35, main = "SARS Replication")
+
+hSars$counts <- hSars$counts / sum(hSars$counts) * 100
+
+plot(hSars, main = "SARS Prob Freq Distrib")
+
+
+densSARS <- density(sars$prob)
+
+densSARS$y <- densSARS$y / sum(densSARS$y) *100
+
+plot(densSARS, main = "SARS: Prob Freq Distrib 2")
+
+
 
 ```
 
