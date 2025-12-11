@@ -126,7 +126,7 @@ but I = 1 infectious individual per simulation
 
 
 ```{r Tuberculosis}
-better_monte <- function(m = 10000, dis_quanta, quanta_sd, room_size = 132, 
+better_monte <- function(m = 10000, dis_quanta, quanta_sd, room_vol = 132, 
                          infected_individuals = 1, ACH = 4){ 
   probability_inf <- numeric(m)
   num_new_infect <- numeric(m)
@@ -148,7 +148,9 @@ better_monte <- function(m = 10000, dis_quanta, quanta_sd, room_size = 132,
     
     S_t <- S0 * exp(-nucci)
     
-    inf <- S0 - S_t
+    
+    exp_inf <- S0 - S_t
+    inf <- rpois(1, lambda = exp_inf)
     
     sus_prob <- inf / S0
     
@@ -183,14 +185,12 @@ TB_plot <- ggplot(data = TB_df, aes(x = prob)) +
   geom_histogram(aes(y = ..density.. *100),
                  bins = 35, 
                  fill = "lightgrey",
-                 color = "black") + 
-  geom_density(color = "darkred", linewidth = 1) +
+                 color = "black") +
   labs(title = "TB Prob. Distrib.",
        x = "Prob. of Infection",
        y = "Percentage of Simulations")
 
 TB_plot
-
 
 ```
 
