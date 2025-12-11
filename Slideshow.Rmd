@@ -278,6 +278,8 @@ ggplot(comb_df2, aes(x=prob, fill=Disease, color=Disease)) +
   theme_minimal()
 ```
 
+**Scenario 2 Results** 
+The results shown for scenario 2 is 
 
 ## New Disease
 
