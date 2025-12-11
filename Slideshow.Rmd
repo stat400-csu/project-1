@@ -124,7 +124,7 @@ We had 2 main goals going into this project:
 
 ## Scenario 1
 
-The room size is has an increased size than the one in the article. The exposure time is longer by 30 seconds (1 minute in total). There is still only one infected person in the room. Before hand, we predicted that the infection probability would decrease. 
+The room volume is larger (300m^3 opposed to 132m^3). The exposure time is longer by 30 minutes (1 hr in total). There is still only one infected person in the room. Before hand, we predicted that the infection probability would decrease. 
 
 ```{r Scenario 1 Graph, echo=FALSE}
 scen1_TB <- scenario_monte(10000, dis_quanta = 12.7, quanta_sd = 3.0,
