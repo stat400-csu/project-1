@@ -1,5 +1,5 @@
 ---
-title: "Slideshow"
+title: "Monte Carlo Applied to Infectious Airborne Diseases"
 subtitle: "Stat 400"
 author: "Group 1: Robin Thrush and Kaitlynn Walston"
 output: 
