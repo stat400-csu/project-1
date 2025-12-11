@@ -46,15 +46,13 @@ P = 1 - \exp \Bigg[ - \frac{p \, I \, \phi}{V} \cdot
 \frac{N t + e^(-N t) - 1}{N^2} \Bigg]
 \]
 
-P --> probability of infection of susceptible individuals
-p --> pulmonary ventilation rate
-I --> # of infectors
-$\phi$ --> quantum generation rate (quanta/hr)
-V --> room volume 
-N --> room ventilation rate (air change/hr)
-t --> exposure time for susceptible individuals (h)
-
-
+- P --> probability of infection of susceptible individuals
+- p --> pulmonary ventilation rate
+- I --> # of infectors
+- $\phi$ --> quantum generation rate (quanta/hr)
+- V --> room volume 
+- N --> room ventilation rate (air change/hr)
+- t --> exposure time for susceptible individuals (h)
 
 ## Replication
 
