@@ -59,7 +59,6 @@ First defined by Wells (1955), he built a model for airborne infections with goa
 "Quantum" is the infectious dose
 1 quantum inhaled means the probability of infection to be 63.2%
 
->>>>>>> Stashed changes
 
 
 ## Replication
