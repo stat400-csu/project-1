@@ -267,7 +267,11 @@ ggplot(comb_df2, aes(x=prob, fill=Disease, color=Disease)) +
 
 
 ## New Disease
-The disease we wanted to test everything with was SARS. SARS, or severe acute respiratory syndrome, is another common respiratory illness that is typically spread through the air and being is close contact with an infected person. The quanta was: ; the results were: 
+The disease we wanted to test everything with was SARS. SARS, or severe acute respiratory syndrome, is another common respiratory illness that is typically spread through the air and being is close contact with an infected person. 
+
+-The quanta was:
+
+## New Disease Results
 
 ```{r graph, echo=FALSE}
 
