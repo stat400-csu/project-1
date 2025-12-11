@@ -182,7 +182,7 @@ mean(TB$prob)
 TB_df <- data.frame(prob = TB$prob)
 
 TB_plot <- ggplot(data = TB_df, aes(x = prob)) + 
-  geom_histogram(aes(y = ..density.. *100),
+  geom_histogram(aes(y = ..count.. /sum(..count..) *100),
                  bins = 35, 
                  fill = "lightgrey",
                  color = "black") +
