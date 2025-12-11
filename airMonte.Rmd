@@ -372,10 +372,10 @@ sum_dis_round
 
 ```{r graph}
 
-TB_df$Disease <- "TB"
-Measles_df <- data.frame(prob=Measles$prob, Disease = "Measles")
-Influenza_df <- data.frame(prob=Influenza$prob, Disease = "Influenza")
-SARS_df <- data.frame(prob=SARS$prob, Disease="SARS")
+TB_df <- data.frame(prob=as.numeric(TB$prob), Disease="TB")
+Measles_df <- data.frame(prob=as.numeric(Measles$prob), Disease = "Measles")
+Influenza_df <- data.frame(prob=as.numeric(Influenza$prob), Disease = "Influenza")
+SARS_df <- data.frame(prob=as.numeric(SARS$prob), Disease="SARS")
 
 combined_df <- rbind(TB_df, Measles_df, Influenza_df, SARS_df)
 combined_df$prob <- pmin(pmax(combined_df$prob, 0),1)
