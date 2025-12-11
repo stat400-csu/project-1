@@ -492,7 +492,6 @@ s1_Flu <- scenario_monte(10000, 100, 25.0, 300, 1, 4,
                          max(rnorm(1, mean = 1, sd = 0.167)))
 
 mean(s1_Flu$prob)
-
 ```
 
 ```{r Scenario 2 Flu}
