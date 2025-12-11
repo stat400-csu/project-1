@@ -120,7 +120,7 @@ Waiting room Volume: 132 (m^3)
 Mean Pulmonary Ventilation Rate: mean = 0.48, SD = 0.2
 Mean Waiting Time: t = 30 min,  SD = 10 min
 Room Ventilation Rate: mean = 4
-Susceptibles Present: mean = 19,  SD = 10
+Susceptible Patients: mean = 19,  SD = 10
 
 but I = 1 infectious individual per simulation
 
