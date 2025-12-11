@@ -378,6 +378,7 @@ Influenza_df <- data.frame(prob=Influenza$prob, Disease = "Influenza")
 SARS_df <- data.frame(prob=SARS$prob, Disease="SARS")
 
 combined_df <- rbind(TB_df, Measles_df, Influenza_df, SARS_df)
+combined_df$prob <- pmin(pmax(combined_df$prob, 0),1)
 
 ggplot(combined_df, aes(x=prob, fill=Disease, color=Disease)) +
   geom_histogram(aes(y= ..count.. / sum(..count..) * 100),
@@ -461,6 +462,7 @@ Meas_df1 <- data.frame(prob=scen1_meas$prob, Disease="Measles")
 Flu_df1 <- data.frame(prob=scen1_flu$prob, Disease="Influenza")
 
 comb_df1 <- rbind(TB_df1, Meas_df1, Flu_df1)
+comb_df1 <- pmin(pmax(comb_df1$prob, 0),1)
 
 ggplot(comb_df1, aes(x=prob, fill=Disease, color=Disease)) +
   geom_histogram(aes(y=..count.. / sum(..count..) * 100),
@@ -534,7 +536,37 @@ mean(s2_Flu$prob)
 ```
 
 
+```{r Scenario 2 Graph}
+scen2_TB <- scenario_monte(10000, dis_quanta = 12.7, quanta_sd = 3.0,
+                   room_vol = 50, infected_individuals = 2, 
+                   ACH = 4)
+scen2_meas <- scenario_monte(10000, dis_quanta = 100, quanta_sd = 25.0,
+                   room_vol = 50, infected_individuals = 2, 
+                   ACH = 4)
+scen2_flu <- scenario_monte(10000, dis_quanta = 570, quanta_sd = 173.0,
+                   room_vol = 50, infected_individuals = 2, 
+                   ACH = 4)
 
+TB_df2 <- data.frame(prob=scen1_TB$prob, Disease="TB")
+Meas_df2 <- data.frame(prob=scen1_meas$prob, Disease="Measles")
+Flu_df2 <- data.frame(prob=scen1_flu$prob, Disease="Influenza")
+
+comb_df2 <- rbind(TB_df2, Meas_df2, Flu_df2)
+
+ggplot(comb_df2, aes(x=prob, fill=Disease, color=Disease)) +
+  geom_histogram(aes(y=..count.. / sum(..count..) * 100),
+                 bins=35, position="identity", alpha=0.4) +
+  labs(title="Scenario 2: Probability of Infection Distribution by Disease",
+       x="Probability of Infection",
+       y = "Percentage of Simulations") +
+  scale_color_manual(values = c("TB" = "green", "Measles" = "magenta",
+                               "Influenza"="blue")) +
+  scale_fill_manual(values = c("TB" = "green", "Measles" = "magenta",
+                               "Influenza"="blue")) +
+  theme_minimal()
+
+
+```
 
 
 
