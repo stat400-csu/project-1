@@ -347,6 +347,27 @@ sum_dis_round
 
 
 
+```{r graph}
+
+TB_df$Disease <- "TB"
+Measles_df <- data.frame(prob=Measles$prob, Disease = "Measles")
+Influenza_df <- data.frame(prob=Influenza$prob, Disease = "Influenza")
+
+combined_df <- rbind(TB_df, Measles_df, Influenza_df)
+
+ggplot(combined_df, aes(x=prob, fill=Disease, color=Disease)) +
+  geom_histogram(aes(y= ..count.. / sum(..count..) * 100),
+                  bins=35, position="identity", alpha=0.4) +
+  labs(title="Prob. of Infection Distribution by Disease",
+       x = "Probability of Infection",
+       y = "Percentage of Simulations") +
+  scale_color_manual(values = c("TB" = "green", "Measles" = "magenta",
+                               "Influenza"="blue")) +
+  scale_fill_manual(values = c("TB" = "green", "Measles" = "magenta",
+                               "Influenza"="blue")) +
+  theme_minimal()
+
+```
 
 
 
