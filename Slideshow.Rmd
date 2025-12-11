@@ -54,11 +54,7 @@ P = 1 - \exp \Bigg[ - \frac{p \, I \, \phi}{V} \cdot
 - N --> room ventilation rate (air change/hr)
 - t --> exposure time for susceptible individuals (h)
 
-<<<<<<< HEAD
-=======
 
-
->>>>>>> a5760440497e5fa420678874ff5183200d189349
 ## Quanta Rate:
 First defined by Wells (1955), he built a model for airborne infections with goal to quantify the amount of infectious material needed to cause infection.
 
@@ -74,8 +70,6 @@ df_res <- data.frame(Disease = c("TB", "Flu", "Measles"), Original = c(0.0034,0.
 
 df_res
 ```
-=======
->>>>>>> a5760440497e5fa420678874ff5183200d189349
 
 
 ## Replication
