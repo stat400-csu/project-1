@@ -370,6 +370,55 @@ ggplot(combined_df, aes(x=prob, fill=Disease, color=Disease)) +
 ```
 
 
+```{r Scenario 1}
+scenario_monte <- function(m = 10000, dis_quantaS, quanta_sdS, room_vol = 300, 
+                         infected_individuals = 1, ACH = 4, t_scen = max(rnorm(1, mean = 1, sd = 0.167))){ 
+  prob_inf <- numeric(m)
+  num_infec <- numeric(m)
+  sus_per <- numeric(m)
 
+  for(i in 1:m) {
+    
+    p_scen <- max(rnorm(1, mean = 0.48, sd = 0.20), 0)
+    phi_scen <- max(rnorm(1, mean = dis_quantaS, sd = quanta_sdS),0)
+    S0_scen <- max(round(rnorm(1, mean = 19, sd = 10)),1)
+    
+    q_2_scen <- infected_individuals * phi_scen
+ 
+    nucci_scen <- ((p_scen*q_2_scen)/room_vol) * 
+      ((ACH * t_scen + exp(-ACH * t_scen) -1) / (ACH^2))
+    
+    S_t_scen <- S0_scen * exp(-nucci_scen)
+    
+    exp_inf_scen <- S0_scen - S_t_scen
+    inf_scen <- rpois(1, lambda = exp_inf_scen)
+    
+    sus_prob_scen <- inf_scen / S0_scen
+    
+    prob_inf[i] <- sus_prob_scen
+    num_infec[i] <- inf_scen
+    sus_per[i] <- S_t_scen
+  }
+  
+  return(list(prob = prob_inf,
+              infections = num_infec,
+              survivors = sus_per,
+              summary = list(mean_prob = mean(prob_inf),
+                             mean_infections = mean(num_infec),
+                             prob_quantiles = quantile(prob_inf, 
+                                                       c(0.25, 0.5, 0.75, 
+                                                         0.9, 0.95)),
+                             inf_quantiles = quantile(num_infec, 
+                                                      c(0.25, 0.5, 0.75, 
+                                                        0.9, 0.95)))))
+
+}
+
+scenario_1 <- scenario_monte(10000, dis_quanta = 12.7, quanta_sd = 3.0,
+                   room_vol = 300, infected_individuals = 1, 
+                   ACH = 4, t_scen = max(rnorm(1, mean = 1, sd = 0.167)))
+
+
+```
 
 
