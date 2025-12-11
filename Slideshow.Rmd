@@ -5,6 +5,7 @@ author: "Group 1: Robin Thrush and Kaitlynn Walston"
 output: 
   ioslides_presentation:
     css: styles.css
+    indentation: TRUE
 ---
 
 ```{r setup, include=FALSE}
@@ -24,6 +25,7 @@ library(tibble)
 Stochastic Monte Carlo Model to simulate the probability of a susceptible person
 catching an airborne disease.
 
+
 ## Article
 
 Beggs. et al., a study conducted to understand the harm infectious people bring to healthcare waiting rooms. Their
@@ -31,11 +33,13 @@ hope was to to have findings that backed up the idea to have more precautions to
 
 In our article, the researchers attempt to predict the infection rate of an airborne disease when waiting in a waiting room. They did their study on Tuberculous, Measles, and Influenza. They had had specific requirements of room size, ventilation rate, ...
 
+
 ## Assumptions
 
 - Only one infected person in the waiting room
 - Once infected, the person can not infect others
 - The air being ventilated through the room is mixture of outside air and "infected" air (not being filtered)
+
 
 ## Replication
 
@@ -141,15 +145,74 @@ densSARS$y <- densSARS$y / sum(densSARS$y) *100
 
 
 We had 2 main going into this project:
+
 - we wanted to test their infection rate they found by changing different variables such as room size and how many people were infected
 - we wanted to replicate their Monte Carlo approach and apply it to a different disease (SARS)
 - quantum - the amount of airborne material required to infect a majority of susceptible individuals exposed to it
 
+
 ## Scenario 1
 
-The room size is has an increased size than the one in the article. The exposure time is longer by 30 seconds (1 minute in total). There is still only one infected person in the room. Before hand, we predicted that the infection probability would decrease. 
+For the first scenario, the factors we changed were:
 
-```{r Scenario 1 Graph, echo=FALSE}
+- room size has an increased size
+- exposure time is longer by 30 seconds (1 minute in total). 
+- only one infected person in the room. 
+
+### Prediction: the infection probability would decrease. 
+
+
+## Scenario 1 Results
+
+```{r Scenario 1 Graph, echo=FALSE, warning=FALSE}
+
+scenario_monte <- function(m = 10000, dis_quantaS, quanta_sdS, room_vol = 300, 
+                         infected_individuals = 1, ACH = 4, t_scen = max(rnorm(1, mean = 1, sd = 0.167))){ 
+  prob_inf <- numeric(m)
+  num_infec <- numeric(m)
+  sus_per <- numeric(m)
+
+  for(i in 1:m) {
+    
+    p_scen <- max(rnorm(1, mean = 0.48, sd = 0.20), 0)
+    phi_scen <- max(rnorm(1, mean = dis_quantaS, sd = quanta_sdS),0)
+    S0_scen <- max(round(rnorm(1, mean = 19, sd = 10)),1)
+    
+    q_2_scen <- infected_individuals * phi_scen
+ 
+    nucci_scen <- ((p_scen*q_2_scen)/room_vol) * 
+      ((ACH * t_scen + exp(-ACH * t_scen) -1) / (ACH^2))
+    
+    S_t_scen <- S0_scen * exp(-nucci_scen)
+    
+    exp_inf_scen <- S0_scen - S_t_scen
+    inf_scen <- rpois(1, lambda = exp_inf_scen)
+    
+    sus_prob_scen <- inf_scen / S0_scen
+    
+    prob_inf[i] <- sus_prob_scen
+    num_infec[i] <- inf_scen
+    sus_per[i] <- S_t_scen
+  }
+  
+  return(list(prob = prob_inf,
+              infections = num_infec,
+              survivors = sus_per,
+              summary = list(mean_prob = mean(prob_inf),
+                             mean_infections = mean(num_infec),
+                             prob_quantiles = quantile(prob_inf, 
+                                                       c(0.25, 0.5, 0.75, 
+                                                         0.9, 0.95)),
+                             inf_quantiles = quantile(num_infec, 
+                                                      c(0.25, 0.5, 0.75, 
+                                                        0.9, 0.95)))))
+
+}
+
+scenario_1 <- scenario_monte(10000, dis_quantaS = 12.7, quanta_sdS = 3.0,
+                   room_vol = 300, infected_individuals = 1, 
+                   ACH = 4, t_scen = max(rnorm(1, mean = 1, sd = 0.167)))
+
 scen1_TB <- scenario_monte(10000, dis_quanta = 12.7, quanta_sd = 3.0,
                    room_vol = 300, infected_individuals = 1, 
                    ACH = 4)
@@ -183,8 +246,15 @@ ggplot(comb_df1, aes(x=prob, fill=Disease, color=Disease)) +
 
 ## Scenario 2
 
-The room size was smaller than the one in the article. The exposure time is the same as the article at 30 seconds. There is now two infected people in the room. Before hand, we predicted that the infection probability would increase. 
+For the second scenario, the factors we changed were:
+- room size has a decreased size
+- exposure time is set at the same time- 30 seconds 
+- now two infected person in the room. 
 
+### Prediction: the infection probability would increase 
+
+
+## Scenario 2 Results
 ```{r Scenario 2 Graph, echo=FALSE}
 scen2_TB <- scenario_monte(10000, dis_quanta = 12.7, quanta_sd = 3.0,
                    room_vol = 50, infected_individuals = 2, 
@@ -215,9 +285,6 @@ ggplot(comb_df2, aes(x=prob, fill=Disease, color=Disease)) +
                                "Influenza"="blue")) +
   theme_minimal()
 ```
-
-
-
 
 
 ## New Disease
