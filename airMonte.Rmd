@@ -414,11 +414,38 @@ scenario_monte <- function(m = 10000, dis_quantaS, quanta_sdS, room_vol = 300,
 
 }
 
-scenario_1 <- scenario_monte(10000, dis_quanta = 12.7, quanta_sd = 3.0,
+scenario_1 <- scenario_monte(10000, dis_quantaS = 12.7, quanta_sdS = 3.0,
                    room_vol = 300, infected_individuals = 1, 
                    ACH = 4, t_scen = max(rnorm(1, mean = 1, sd = 0.167)))
 
+mean(scenario_1$prob)
+
 
 ```
+
+
+
+Scenario 2:
+Room volume is 132
+Exposure time is 30 min
+The number of infected individuals is 2
+
+Prediction: larger probability
+
+
+```{r Scenario 2}
+
+scenario_2 <- scenario_monte(10000, dis_quantaS = 12.7, quanta_sdS = 3.0,
+                             room_vol = 132, infected_individuals = 1, ACH = 4,
+                             t_scen = max(rnorm(1, mean = 0.5, sd = 0.167)))
+
+mean(scenario_2$prob)
+
+```
+
+
+
+
+
 
 
