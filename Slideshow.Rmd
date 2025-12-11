@@ -13,8 +13,13 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 ## Introduction
 
+Stochastic Monte Carlo Model to simulate the probability of a susceptible person
+catching an airborne disease.
 
 ## Article
+
+Beggs. et al., a study conducted to understand the harm infectious people bring to healthcare waiting rooms. Their
+hope was to to have findings that backed up the idea to have more precautions to minimize the spread of airborne infections. The diseases they looked at were Tuberculosis, Measles, and Influenza.
 
 In our article, the researchers attempt to predict the infection rate of an airborne disease when waiting in a waiting room. They did their study on Tuberculous, Measles, and Influenza. They had had specific requirements of room size, ventilation rate, ...
 
