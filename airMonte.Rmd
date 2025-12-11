@@ -477,7 +477,7 @@ mean(scen_1_M$prob)
 
 ```{r Scenario 2 Measles}
 
-scen_2_M <- scenario_monte(10000, 570, 143.0, 132, 2, 4, max(rnorm(1, mean = 1, sd = 0.167)))
+scen_2_M <- scenario_monte(10000, 570, 143.0, 132, 2, 4, max(rnorm(1, mean = 0.5, sd = 0.167)))
 
 mean(scen_2_M$prob)
 ```
@@ -486,6 +486,17 @@ mean(scen_2_M$prob)
 TB: mean = 12.7,  SD = 3.0
 Flu: mean = 100,  SD = 25.0
 Measles: mean = 570,  SD = 143.0
+
+```{r Scenario 1 Flu}
+s1_Flu <- scenario_monte(10000, 100, 25.0, 300, 1, 4, max(rnorm(1, mean = 1, sd = 0.167)) )
+
+mean(s1_Flu$prob)
+
+```
+
+
+
+
 
 
 
