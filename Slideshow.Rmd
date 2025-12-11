@@ -31,6 +31,15 @@ catching an airborne disease.
 Beggs. et al., a study conducted to understand the harm infectious people bring to healthcare waiting rooms. Their
 hope was to to have findings that backed up the idea to have more precautions to minimize the spread of airborne infections. The diseases they looked at were Tuberculosis, Measles, and Influenza.
 
+Assumptions they made:
+- Only one infectious individual present in each simulation
+- Waiting room is ventilated w outside air at a constant flow rate 
+- Air in waiting room is mixed so infectious particles are evenly distributed throughout the room space.
+- values of p, phi, t, and S vary and are normally distributed.
+- applied an SD of 25% of the mean quanta production val. 
+- Once susceptible individuals become infected they cannot infect anyone else (bc they leave within the 30min they are there.)
+
+Original Wells-Riley
 In our article, the researchers attempt to predict the infection rate of an airborne disease when waiting in a waiting room. They did their study on Tuberculous, Measles, and Influenza. They had had specific requirements of room size, ventilation rate, ...
 
 
