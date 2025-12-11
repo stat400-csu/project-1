@@ -10,6 +10,14 @@ output:
 ```{r setup, include=FALSE}
 set.seed(445)
 knitr::opts_chunk$set(echo = FALSE)
+
+library(dplyr)
+library(stats)
+library(tidyr)
+library(tidyverse)
+library(broom)
+library(ggplot2)
+library(tibble)
 ```
 ## Introduction
 
@@ -112,8 +120,6 @@ Influenza <- better_monte(10000, dis_quanta = 570, quanta_sd = 173.0,
 
 mean(Influenza$prob)
 
-hFLU$counts <- hFLU$counts / sum(hFLU$counts) * 100
-
 densFLU <- density(Influenza$prob)
 
 densFLU$y <- densFLU$y / sum(densFLU$y) *100
@@ -141,14 +147,72 @@ We had 2 main going into this project:
 
 The room size is has an increased size than the one in the article. The exposure time is longer by 30 seconds (1 minute in total). There is still only one infected person in the room. Before hand, we predicted that the infection probability would decrease. 
 
+```{r Scenario 1 Graph, echo=FALSE}
+scen1_TB <- scenario_monte(10000, dis_quanta = 12.7, quanta_sd = 3.0,
+                   room_vol = 300, infected_individuals = 1, 
+                   ACH = 4)
+scen1_meas <- scenario_monte(10000, dis_quanta = 100, quanta_sd = 25.0,
+                   room_vol = 300, infected_individuals = 1, 
+                   ACH = 4)
+scen1_flu <- scenario_monte(10000, dis_quanta = 570, quanta_sd = 173.0,
+                   room_vol = 300, infected_individuals = 1, 
+                   ACH = 4)
 
+TB_df1 <- data.frame(prob=as.numeric(scen1_TB$prob), Disease="TB")
+Meas_df1 <- data.frame(prob=as.numeric(scen1_meas$prob), Disease="Measles")
+Flu_df1 <- data.frame(prob=as.numeric(scen1_flu$prob), Disease="Influenza")
+
+comb_df1 <- rbind(TB_df1, Meas_df1, Flu_df1)
+comb_df1$prob <- pmin(pmax(comb_df1$prob, 0),1)
+
+ggplot(comb_df1, aes(x=prob, fill=Disease, color=Disease)) +
+  geom_histogram(aes(y=..count.. / sum(..count..) * 100),
+                 bins=35, position="identity", alpha=0.4) +
+  labs(title="Scenario 1: Probability of Infection Distribution by Disease",
+       x="Probability of Infection",
+       y = "Percentage of Simulations") +
+  scale_color_manual(values = c("TB" = "green", "Measles" = "magenta",
+                               "Influenza"="blue")) +
+  scale_fill_manual(values = c("TB" = "green", "Measles" = "magenta",
+                               "Influenza"="blue")) +
+  theme_minimal()
+```
 
 
 ## Scenario 2
 
 The room size was smaller than the one in the article. The exposure time is the same as the article at 30 seconds. There is now two infected people in the room. Before hand, we predicted that the infection probability would increase. 
 
+```{r Scenario 2 Graph, echo=FALSE}
+scen2_TB <- scenario_monte(10000, dis_quanta = 12.7, quanta_sd = 3.0,
+                   room_vol = 50, infected_individuals = 2, 
+                   ACH = 4)
+scen2_meas <- scenario_monte(10000, dis_quanta = 100, quanta_sd = 25.0,
+                   room_vol = 50, infected_individuals = 2, 
+                   ACH = 4)
+scen2_flu <- scenario_monte(10000, dis_quanta = 570, quanta_sd = 173.0,
+                   room_vol = 50, infected_individuals = 2, 
+                   ACH = 4)
 
+TB_df2 <- data.frame(prob=as.numeric(scen2_TB$prob), Disease="TB")
+Meas_df2 <- data.frame(prob=as.numeric(scen2_meas$prob), Disease="Measles")
+Flu_df2 <- data.frame(prob=as.numeric(scen2_flu$prob), Disease="Influenza")
+
+comb_df2 <- rbind(TB_df2, Meas_df2, Flu_df2)
+comb_df2$prob <- pmin(pmax(comb_df2$prob, 0),1)
+
+ggplot(comb_df2, aes(x=prob, fill=Disease, color=Disease)) +
+  geom_histogram(aes(y=..count.. / sum(..count..) * 100),
+                 bins=35, position="identity", alpha=0.4) +
+  labs(title="Scenario 2: Probability of Infection Distribution by Disease",
+       x="Probability of Infection",
+       y = "Percentage of Simulations") +
+  scale_color_manual(values = c("TB" = "green", "Measles" = "magenta",
+                               "Influenza"="blue")) +
+  scale_fill_manual(values = c("TB" = "green", "Measles" = "magenta",
+                               "Influenza"="blue")) +
+  theme_minimal()
+```
 
 
 
