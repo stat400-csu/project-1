@@ -90,18 +90,7 @@ TB <- better_monte(10000, dis_quanta = 12.7, quanta_sd = 3.0,
                    ACH = 4)
 
 mean(TB$prob)
-
 TB_df <- data.frame(prob = TB$prob)
-
-TB_plot <- ggplot(data = TB_df, aes(x = prob)) + 
-  geom_histogram(aes(y = ..count.. /sum(..count..) *100),
-                 bins = 35, 
-                 fill = "lightgrey",
-                 color = "black") +
-  labs(title = "TB Prob. Distrib.",
-       x = "Prob. of Infection",
-       y = "Percentage of Simulations")
-
 
 ####
 Measles <- better_monte(10000, dis_quanta = 100, quanta_sd = 25.0,
@@ -109,7 +98,6 @@ Measles <- better_monte(10000, dis_quanta = 100, quanta_sd = 25.0,
                    ACH = 4)
 
 mean(Measles$prob)
-
 
 ####
 Influenza <- better_monte(10000, dis_quanta = 570, quanta_sd = 173.0,
@@ -128,7 +116,7 @@ mean(SARS$prob)
 ```
 
 
-We had 2 main going into this project:
+We had 2 main goals going into this project:
 - we wanted to test their infection rate they found by changing different variables such as room size and how many people were infected
 - we wanted to replicate their Monte Carlo approach and apply it to a different disease (SARS)
 - quantum - the amount of airborne material required to infect a majority of susceptible individuals exposed to it
