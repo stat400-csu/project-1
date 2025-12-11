@@ -120,12 +120,6 @@ mean(SARS$prob)
 ```
 
 
-
-
-We had 2 main going into this project:
-- we wanted to test their infection rate they found by changing different variables such as room size and how many people were infected
-
-
 We had 2 main goals going into this project:
 
 - we wanted to observe probability of infection as we changed some of Beggs et al. set variables such as room volume, number of ppl infected, and exposure time
