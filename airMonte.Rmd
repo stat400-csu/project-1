@@ -394,7 +394,7 @@ ggplot(combined_df, aes(x=prob, fill=Disease, color=Disease)) +
 ```
 
 
-```{r Scenario 1}
+```{r Scenario 1 TB}
 scenario_monte <- function(m = 10000, dis_quantaS, quanta_sdS, room_vol = 300, 
                          infected_individuals = 1, ACH = 4, t_scen = max(rnorm(1, mean = 1, sd = 0.167))){ 
   prob_inf <- numeric(m)
@@ -457,19 +457,35 @@ The number of infected individuals is 2
 Prediction: larger probability
 
 
-```{r Scenario 2}
+```{r Scenario 2 TB}
 
 scenario_2 <- scenario_monte(10000, dis_quantaS = 12.7, quanta_sdS = 3.0,
-                             room_vol = 132, infected_individuals = 1, ACH = 4,
+                             room_vol = 132, infected_individuals = 2, ACH = 4,
                              t_scen = max(rnorm(1, mean = 0.5, sd = 0.167)))
 
 mean(scenario_2$prob)
 
 ```
 
+```{r Scenario 1 Measles}
+scen_1_M <- scenario_monte(10000, dis_quantaS = 570, quanta_sdS = 143.0,
+                   room_vol = 300, infected_individuals = 1, 
+                   ACH = 4, t_scen = max(rnorm(1, mean = 1, sd = 0.167)))
 
+mean(scen_1_M$prob)
+```
 
+```{r Scenario 2 Measles}
 
+scen_2_M <- scenario_monte(10000, 570, 143.0, 132, 2, 4, max(rnorm(1, mean = 1, sd = 0.167)))
+
+mean(scen_2_M$prob)
+```
+
+## For the different quantas:
+TB: mean = 12.7,  SD = 3.0
+Flu: mean = 100,  SD = 25.0
+Measles: mean = 570,  SD = 143.0
 
 
 
