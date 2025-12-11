@@ -53,15 +53,6 @@ P = 1 - \exp \Bigg[ - \frac{p \, I \, \phi}{V} \cdot
 - N --> room ventilation rate (air change/hr)
 - t --> exposure time for susceptible individuals (h)
 
-<<<<<<< Updated upstream
-P --> probability of infection of susceptible individuals
-p --> pulmonary ventilation rate
-I --> # of infectors
-$\phi$ --> quantum generation rate (quanta/hr)
-V --> room volume 
-N --> room ventilation rate (air change/hr)
-t --> exposure time for susceptible individuals (h)
-=======
 ## Quanta Rate:
 First defined by Wells (1955), he built a model for airborne infections with goal to quantify the amount of infectious material needed to cause infection.
 
