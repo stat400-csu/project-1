@@ -54,14 +54,28 @@ P = 1 - \exp \Bigg[ - \frac{p \, I \, \phi}{V} \cdot
 - N --> room ventilation rate (air change/hr)
 - t --> exposure time for susceptible individuals (h)
 
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> a5760440497e5fa420678874ff5183200d189349
 ## Quanta Rate:
 First defined by Wells (1955), he built a model for airborne infections with goal to quantify the amount of infectious material needed to cause infection.
 
 "Quantum" - the amount of airborne material required to infect a majority of susceptible individuals exposed to it (the infectious dose)
 1 quantum inhaled means the probability of infection to be 63.2%
 
+
+
+## Original Findings VS Our Replication:
+
+```{r compare}
+df_res <- data.frame(Disease = c("TB", "Flu", "Measles"), Original = c(0.0034,0.0262, 0.1349), Replicated = c(0.003132782,0.02585549,0.1359248))
+
+df_res
+```
+=======
+>>>>>>> a5760440497e5fa420678874ff5183200d189349
 
 
 ## Replication
@@ -115,17 +129,22 @@ better_monte <- function(m = 10000, dis_quanta, quanta_sd, room_vol = 132,
 TB <- better_monte(10000, dis_quanta = 12.7, quanta_sd = 3.0,
                    room_vol = 132, infected_individuals = 1, 
                    ACH = 4)
+mean(TB$prob)
 TB_df <- data.frame(prob = TB$prob)
 
 ####
-Measles <- better_monte(10000, dis_quanta = 100, quanta_sd = 25.0,
+Influenza <- better_monte(10000, dis_quanta = 100, quanta_sd = 25.0,
                    room_vol = 132, infected_individuals = 1, 
                    ACH = 4)
 
+mean(Influenza$prob)
+
 ####
-Influenza <- better_monte(10000, dis_quanta = 570, quanta_sd = 173.0,
+Measles <- better_monte(10000, dis_quanta = 570, quanta_sd = 173.0,
                    room_vol = 132, infected_individuals = 1, 
                    ACH = 4)
+
+mean(Measles$prob)
 
 ###
 SARS <- better_monte(10000, dis_quanta = 2.7, quanta_sd = 1.2,
@@ -279,6 +298,8 @@ ggplot(comb_df2, aes(x=prob, fill=Disease, color=Disease)) +
   theme_minimal()
 ```
 
+**Scenario 2 Results** 
+The results shown for scenario 2 is 
 
 ## New Disease
 
@@ -314,4 +335,8 @@ ggplot(combined_df, aes(x=prob, fill=Disease, color=Disease)) +
 
 
 ## Conclusion
+
+A higher quanta rate is more likely to increase the probability of susceptible people contracting the airborn disease. 
+
+
 
