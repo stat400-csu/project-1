@@ -20,24 +20,22 @@ library(broom)
 library(ggplot2)
 library(tibble)
 ```
-## Introduction
-
-Stochastic Monte Carlo Model to simulate the probability of a susceptible person
-catching an airborne disease.
 
 
 ## Article
 
 Beggs. et al., a study conducted to understand the harm infectious people bring to healthcare waiting rooms. Their
-hope was to to have findings that backed up the idea to have more precautions to minimize the spread of airborne infections. The diseases they looked at were Tuberculosis, Measles, and Influenza.
+hope was to to have findings that backed up the idea to have more precautions to minimize the spread of airborne infections. The diseases they looked at were Tuberculosis, Measles, and Influenza. We followed a Stochastic Monte Carlo Model to simulate the probability of a susceptible person
+catching the listed airborne disease.
 
-Assumptions they made:
+## Assumptions
+
+Assumptions made:
 - Only one infectious individual present in each simulation
 - Waiting room is ventilated w outside air at a constant flow rate 
 - Air in waiting room is mixed so infectious particles are evenly distributed throughout the room space.
-- values of p, phi, t, and S vary and are normally distributed.
-- applied an SD of 25% of the mean quanta production val. 
-- Once susceptible individuals become infected they cannot infect anyone else (bc they leave within the 30min they are there.)
+- Values of p, phi, t, and S vary and are normally distributed.
+- Once susceptible individuals become infected they cannot infect anyone else
 
 
 ## Equation:
@@ -46,6 +44,7 @@ P = 1 - \exp \Bigg[ - \frac{p \, I \, \phi}{V} \cdot
 \frac{N t + e^(-N t) - 1}{N^2} \Bigg]
 \]
 
+
 - P --> probability of infection of susceptible individuals
 - p --> pulmonary ventilation rate
 - I --> # of infectors
@@ -53,6 +52,15 @@ P = 1 - \exp \Bigg[ - \frac{p \, I \, \phi}{V} \cdot
 - V --> room volume 
 - N --> room ventilation rate (air change/hr)
 - t --> exposure time for susceptible individuals (h)
+
+P --> probability of infection of susceptible individuals
+p --> pulmonary ventilation rate
+I --> # of infectors
+$\phi$ --> quantum generation rate (quanta/hr)
+V --> room volume 
+N --> room ventilation rate (air change/hr)
+t --> exposure time for susceptible individuals (h)
+
 
 ## Replication
 
@@ -132,14 +140,14 @@ We had 2 main goals going into this project:
 
 ## Scenario 1
 
+For the first scenario, the factors we set/changed were:
 
-For the first scenario, the factors we changed were:
-
-- room size has an increased size
-- exposure time is longer by 30 seconds (1 minute in total). 
-- only one infected person in the room. 
+- room size: we increased the size to 300 cubic meters
+- exposure time: increased by 30 seconds (1 minute in total). 
+- infected: only one infected person in the room. 
 
 ### Prediction: the infection probability would decrease.
+
 * quantum - the amount of airborne material required to infect a majority of susceptible individuals exposed to it
 
 
@@ -229,11 +237,10 @@ ggplot(comb_df1, aes(x=prob, fill=Disease, color=Disease)) +
 
 ## Scenario 2
 
-
-For the second scenario, the factors we changed were:
-- room size has a decreased size
-- exposure time is set at the same time- 30 seconds 
-- now two infected person in the room. 
+For the second scenario, the factors we changed/set were:
+- room size: has a decreased size of 50 cubic meters
+- exposure time: is set at the same time of 30 seconds 
+- infected: now two infected person in the room. 
 
 The room volume was smaller (50m^3 opposed to 132m^2). The exposure time is the same as the article at 30 minutes. There are now two infected people in the room. Before hand, we predicted that the infection probability would increase. 
 
@@ -274,9 +281,10 @@ ggplot(comb_df2, aes(x=prob, fill=Disease, color=Disease)) +
 
 
 ## New Disease
-The disease we wanted to test everything with was SARS. SARS, or severe acute respiratory syndrome, is another common respiratory illness that is typically spread through the air and being is close contact with an infected person. 
 
--The quanta was: 2.7 with a sd of 1.2
+The disease we wanted to test everything with was SARS.Severe Acute Respiratory Syndrome, or SARS, is a common respiratory illness that is also typically spread through the air as well as being is close contact with an infected person. 
+
+-The SARS quanta was: 2.7 with a standev of 1.2
 
 ## New Disease Results
 
