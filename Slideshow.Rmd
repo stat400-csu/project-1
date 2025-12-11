@@ -65,7 +65,7 @@ First defined by Wells (1955), he built a model for airborne infections with goa
 "Quantum" - the amount of airborne material required to infect a majority of susceptible individuals exposed to it (the infectious dose)
 1 quantum inhaled means the probability of infection to be 63.2%
 
-<<<<<<< HEAD
+
 
 ## Original Findings VS Our Replication:
 
@@ -335,4 +335,8 @@ ggplot(combined_df, aes(x=prob, fill=Disease, color=Disease)) +
 
 
 ## Conclusion
+
+A higher quanta rate is more likely to increase the probability of susceptible people contracting the airborn disease. 
+
+
 
