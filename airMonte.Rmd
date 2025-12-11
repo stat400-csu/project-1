@@ -89,8 +89,6 @@ air_monte <- function(m = 10000, quanta_mean, quanta_sd,
     return(list(data=res_df, summary=summ))
 }
 
-
-
 plot_prob <- function(sim_res, title="Infection Prob. Distribution"){
   df <- sim_res$data
   ggplot(df, aes(x=prob)) +
@@ -108,6 +106,8 @@ Meas <- air_monte(m=10000, quanta_mean=570, quanta_sd=143.0)
 SARS <- air_monte(m=10000, quanta_mean=2.7, quanta_sd=1.2)
 
 ```
+
+
 
 
 ## For the different quantas:
@@ -185,7 +185,6 @@ dens <- density(TB$prob)
 dens$y <- dens$y / sum(dens$y) *100
 plot(dens, main = "TB: Prob Freq Distrib 2")
 ```
-
 
 ```{r Measles}
 Measles <- better_monte(10000, dis_quanta = 100, quanta_sd = 25.0,
@@ -271,39 +270,7 @@ Prediction: smaller probability
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 In their study: occupancy levels, waiting times, and ventilation rate varied.
-
-
 
 *Wanting to compare COVID/SARS quantum to the already listed diseases
 Quantum: generation rate of 18-48 h^-1  for COVID-19
@@ -312,31 +279,63 @@ Wells-Riley equation: $P = C/S = 1-e^{Iqpt/Q}$
 
 https://link.springer.com/article/10.1007/s12273-020-0703-5 
 
-```{r second disease: SARS}
-sars_mean <- 2.7  #mean quanta per hour
-sars_sd <- 1.2
 
-sars <- better_monte(10000, dis_quanta = sars_mean, quanta_sd = sars_sd,
-                   room_size = 132, infected_individuals = 1, 
-                   room_venti_rate = 4)
+```{r summary results}
+sum_disease <- tibble::tibble(
+  Disease=c("TB","Flu", "Meas", "SARS"),
+  Mean_Prob = c(TB$summary$mean_prob,
+                Flu$summary$mean_prob,
+                Meas$summary$mean_prob,
+                SARS$summary$mean_prob),
+  Mean_Infections = c(TB$summary$mean_infections,
+                      Flu$summary$mean_infections,
+                      Meas$summary$mean_infections,
+                      SARS$summary$mean_infections),
+  Prob_25 = c(TB$summary$prob_quantiles[1],
+              Flu$summary$prob_quantiles[1],
+              Meas$summary$prob_quantiles[1],
+              SARS$summary$prob_quantiles[1]),
+  Prob_50 = c(TB$summary$prob_quantiles[2],
+              Flu$summary$prob_quantiles[2],
+              Meas$summary$prob_quantiles[2],
+              SARS$summary$prob_quantiles[2]),
+  Prob_75 = c(TB$summary$prob_quantiles[3],
+              Flu$summary$prob_quantiles[3],
+              Meas$summary$prob_quantiles[3],
+              SARS$summary$prob_quantiles[3]),
+  Prob_90 = c(TB$summary$prob_quantiles[4],
+              Flu$summary$prob_quantiles[4],
+              Meas$summary$prob_quantiles[4],
+              SARS$summary$prob_quantiles[4]),
+  Prob_95 = c(TB$summary$prob_quantiles[5],
+              Flu$summary$prob_quantiles[5],
+              Meas$summary$prob_quantiles[5],
+              SARS$summary$prob_quantiles[5])
+)
 
-mean(sars$prob)
+sum_dis_round <- sum_disease %>%
+  mutate(across(where(is.numeric), ~ round(.x,3)))
 
-hSars <- hist(sars$prob, breaks = 35, main = "SARS Replication")
-
-hSars$counts <- hSars$counts / sum(hSars$counts) * 100
-
-plot(hSars, main = "SARS Prob Freq Distrib")
-
-
-densSARS <- density(sars$prob)
-
-densSARS$y <- densSARS$y / sum(densSARS$y) *100
-
-plot(densSARS, main = "SARS: Prob Freq Distrib 2")
-
-
+sum_dis_round
 
 ```
+
+```{r summary}
+
+## The monte carlo simulation results estimate the infection risk for four airborne disease in a standard waiting room scenario. 
+
+## Tuberculosis: moderate mean infection prob of 0.499 per susceptible individual, with approx 9.6 expected new infections, high variability: range from 0.342 to 0.857, showing potential higher-risk scenarios in dif conditions
+
+## Influenza: higher mean prob: 0.941, nearly 18 expected infections, median and upper quantiles approach 1, infection is almost certain in the environment
+
+## Measles: highest risk, mean prob. of 0.987, almost entire susceptible pop expected to become infected, all quantiles 1
+
+## SARS: low mean prob: 0.153, roughly 3 expected new infections, moderate variability ranges from 0.072 to 0.369
+
+## *infection risk is strongly driven by the disease'airborne quanta generation rate: meas and flu-high risk, tb-moderate risk, sars-lower risk
+
+```
+
+
 
 
