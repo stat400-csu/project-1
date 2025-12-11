@@ -443,9 +443,41 @@ scenario_1 <- scenario_monte(10000, dis_quantaS = 12.7, quanta_sdS = 3.0,
                    ACH = 4, t_scen = max(rnorm(1, mean = 1, sd = 0.167)))
 
 mean(scenario_1$prob)
+```
+
+```{r Scenario 1 Graph}
+scen1_TB <- scenario_monte(10000, dis_quanta = 12.7, quanta_sd = 3.0,
+                   room_vol = 300, infected_individuals = 1, 
+                   ACH = 4)
+scen1_meas <- scenario_monte(10000, dis_quanta = 100, quanta_sd = 25.0,
+                   room_vol = 300, infected_individuals = 1, 
+                   ACH = 4)
+scen1_flu <- scenario_monte(10000, dis_quanta = 570, quanta_sd = 173.0,
+                   room_vol = 300, infected_individuals = 1, 
+                   ACH = 4)
+
+TB_df1 <- data.frame(prob=scen1_TB$prob, Disease="TB")
+Meas_df1 <- data.frame(prob=scen1_meas$prob, Disease="Measles")
+Flu_df1 <- data.frame(prob=scen1_flu$prob, Disease="Influenza")
+
+comb_df1 <- rbind(TB_df1, Meas_df1, Flu_df1)
+
+ggplot(comb_df1, aes(x=prob, fill=Disease, color=Disease)) +
+  geom_histogram(aes(y=..count.. / sum(..count..) * 100),
+                 bins=35, position="identity", alpha=0.4) +
+  labs(title="Scenario 1: Probability of Infection Distribution by Disease",
+       x="Probability of Infection",
+       y = "Percentage of Simulations") +
+  scale_color_manual(values = c("TB" = "green", "Measles" = "magenta",
+                               "Influenza"="blue")) +
+  scale_fill_manual(values = c("TB" = "green", "Measles" = "magenta",
+                               "Influenza"="blue")) +
+  theme_minimal()
 
 
 ```
+
+
 
 
 
