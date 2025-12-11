@@ -288,68 +288,6 @@ Wells-Riley equation: $P = C/S = 1-e^{Iqpt/Q}$
 https://link.springer.com/article/10.1007/s12273-020-0703-5 
 
 
-```{r summary results}
-sum_disease <- tibble::tibble(
-  Disease=c("TB","Flu", "Meas", "SARS"),
-  Mean_Prob = c(TB$summary$mean_prob,
-                Flu$summary$mean_prob,
-                Meas$summary$mean_prob,
-                SARS$summary$mean_prob),
-  Mean_Infections = c(TB$summary$mean_infections,
-                      Flu$summary$mean_infections,
-                      Meas$summary$mean_infections,
-                      SARS$summary$mean_infections),
-  Prob_25 = c(TB$summary$prob_quantiles[1],
-              Flu$summary$prob_quantiles[1],
-              Meas$summary$prob_quantiles[1],
-              SARS$summary$prob_quantiles[1]),
-  Prob_50 = c(TB$summary$prob_quantiles[2],
-              Flu$summary$prob_quantiles[2],
-              Meas$summary$prob_quantiles[2],
-              SARS$summary$prob_quantiles[2]),
-  Prob_75 = c(TB$summary$prob_quantiles[3],
-              Flu$summary$prob_quantiles[3],
-              Meas$summary$prob_quantiles[3],
-              SARS$summary$prob_quantiles[3]),
-  Prob_90 = c(TB$summary$prob_quantiles[4],
-              Flu$summary$prob_quantiles[4],
-              Meas$summary$prob_quantiles[4],
-              SARS$summary$prob_quantiles[4]),
-  Prob_95 = c(TB$summary$prob_quantiles[5],
-              Flu$summary$prob_quantiles[5],
-              Meas$summary$prob_quantiles[5],
-              SARS$summary$prob_quantiles[5])
-)
-
-sum_dis_round <- sum_disease %>%
-  mutate(across(where(is.numeric), ~ round(.x,3)))
-
-sum_dis_round
-
-```
-
-```{r summary}
-
-## The monte carlo simulation results estimate the infection risk for four airborne disease in a standard waiting room scenario. 
-
-## Tuberculosis: moderate mean infection prob of 0.499 per susceptible individual, with approx 9.6 expected new infections, high variability: range from 0.342 to 0.857, showing potential higher-risk scenarios in dif conditions
-
-## Influenza: higher mean prob: 0.941, nearly 18 expected infections, median and upper quantiles approach 1, infection is almost certain in the environment
-
-## Measles: highest risk, mean prob. of 0.987, almost entire susceptible pop expected to become infected, all quantiles 1
-
-## SARS: low mean prob: 0.153, roughly 3 expected new infections, moderate variability ranges from 0.072 to 0.369
-
-```
-
-
-## *infection risk is strongly driven by the disease'airborne quanta generation rate: meas and flu-high risk, tb-moderate risk, sars-lower risk
-
-
-
-
-
-
 
 ```{r summary results}
 sum_disease <- tibble::tibble(
@@ -406,6 +344,10 @@ sum_dis_round
 ## *infection risk is strongly driven by the disease'airborne quanta generation rate: meas and flu-high risk, tb-moderate risk, sars-lower risk
 
 ```
+
+
+
+
 
 
 
