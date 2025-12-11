@@ -109,9 +109,7 @@ Measles <- better_monte(10000, dis_quanta = 100, quanta_sd = 25.0,
                    ACH = 4)
 
 mean(Measles$prob)
-densM <- density(Measles$prob)
 
-densM$y <- densM$y / sum(densM$y) *100
 
 ####
 Influenza <- better_monte(10000, dis_quanta = 570, quanta_sd = 173.0,
@@ -120,10 +118,6 @@ Influenza <- better_monte(10000, dis_quanta = 570, quanta_sd = 173.0,
 
 mean(Influenza$prob)
 
-densFLU <- density(Influenza$prob)
-
-densFLU$y <- densFLU$y / sum(densFLU$y) *100
-
 
 ###
 SARS <- better_monte(10000, dis_quanta = 2.7, quanta_sd = 1.2,
@@ -131,10 +125,6 @@ SARS <- better_monte(10000, dis_quanta = 2.7, quanta_sd = 1.2,
                    ACH = 4)
 
 mean(SARS$prob)
-
-densSARS <- density(SARS$prob)
-densSARS$y <- densSARS$y / sum(densSARS$y) *100
-
 ```
 
 
