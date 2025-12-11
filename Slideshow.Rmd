@@ -31,6 +31,7 @@ catching the listed airborne disease.
 ## Assumptions
 
 Assumptions made:
+
 - Only one infectious individual present in each simulation
 - Waiting room is ventilated w outside air at a constant flow rate 
 - Air in waiting room is mixed so infectious particles are evenly distributed throughout the room space.
@@ -53,22 +54,14 @@ P = 1 - \exp \Bigg[ - \frac{p \, I \, \phi}{V} \cdot
 - N --> room ventilation rate (air change/hr)
 - t --> exposure time for susceptible individuals (h)
 
-<<<<<<< Updated upstream
-P --> probability of infection of susceptible individuals
-p --> pulmonary ventilation rate
-I --> # of infectors
-$\phi$ --> quantum generation rate (quanta/hr)
-V --> room volume 
-N --> room ventilation rate (air change/hr)
-t --> exposure time for susceptible individuals (h)
-=======
+
+
 ## Quanta Rate:
 First defined by Wells (1955), he built a model for airborne infections with goal to quantify the amount of infectious material needed to cause infection.
 
-"Quantum" is the infectious dose
+"Quantum" - the amount of airborne material required to infect a majority of susceptible individuals exposed to it (the infectious dose)
 1 quantum inhaled means the probability of infection to be 63.2%
 
->>>>>>> Stashed changes
 
 
 ## Replication
@@ -156,8 +149,6 @@ For the first scenario, the factors we set/changed were:
 - infected: only one infected person in the room. 
 
 ### Prediction: the infection probability would decrease.
-
-* quantum - the amount of airborne material required to infect a majority of susceptible individuals exposed to it
 
 
 ## Scenario 1 Results
