@@ -14,6 +14,7 @@ library(tidyr)
 library(tidyverse)
 library(broom)
 library(ggplot2)
+library(tibble)
 ```
 
 
@@ -61,7 +62,7 @@ air_monte <- function(m = 10000, quanta_mean, quanta_sd,
     p_vec <- pmax(rnorm(m, breath_mean, breath_sd), 0)
     phi_vec <- pmax(rnorm(m, quanta_mean, quanta_sd), 0)
     t_vec <- pmax(rnorm(m, time_mean, time_sd), 0)
-    Q_vec <- pmax(rnorm(m, vent_mean, venth_sd), 0.01)
+    Q_vec <- pmax(rnorm(m, vent_mean, vent_sd), 0.01)
     S0_vec <- pmax(round(rnorm(m, s_mean, s_sd)), 1)
     I_vec <- infect
     
@@ -74,7 +75,7 @@ air_monte <- function(m = 10000, quanta_mean, quanta_sd,
     new_infect <- S0_vec * P_vec
     S_after <- S0_vec - new_infect
     
-    res_df <- tiblle::tible(
+    res_df <- tibble::tibble(
       p = p_vec, phi=phi_vec, t=t_vec, Q=Q_vec, S0=S0_vec, 
       X=X_vec, prob=P_vec, infections=new_infect, survivors=S_after
     )
@@ -82,8 +83,8 @@ air_monte <- function(m = 10000, quanta_mean, quanta_sd,
     summ <- list(
       mean_prob = mean(res_df$prob),
       mean_infections = mean(res_df$infections),
-      prob_quantiles = quantile(res_df$prob, c(0.25,0.5,0.775,0.9,0.95)),
-      inf_quantiles = quantile(res_df$infections, c(0.25,0.5,0.775,0.9,0.95))
+      prob_quantiles = quantile(res_df$prob, c(0.25,0.5,0.75,0.9,0.95)),
+      inf_quantiles = quantile(res_df$infections, c(0.25,0.5,0.75,0.9,0.95))
     )
     return(list(data=res_df, summary=summ))
 }
@@ -100,10 +101,13 @@ plot_prob <- function(sim_res, title="Infection Prob. Distribution"){
 }
 ```
 
+```{r testing model}
+TB <- air_monte(m=10000, quanta_mean=12.7, quanta_sd=3.0)
+Flu <- air_monte(m=10000, quanta_mean=100, quanta_sd=25.0)
+Meas <- air_monte(m=10000, quanta_mean=570, quanta_sd=143.0)
+SARS <- air_monte(m=10000, quanta_mean=2.7, quanta_sd=1.2)
 
-
-
-
+```
 
 
 ## For the different quantas:
@@ -174,16 +178,11 @@ TB <- better_monte(10000, dis_quanta = 12.7, quanta_sd = 3.0,
 
 mean(TB$prob)
 h <- hist(TB$prob, breaks = 35, main = "TB Replication")
-
 h$counts <- h$counts / sum(h$counts) * 100
-
 plot(h, main = "TBL Prob Freq Distrib")
 
-
 dens <- density(TB$prob)
-
 dens$y <- dens$y / sum(dens$y) *100
-
 plot(dens, main = "TB: Prob Freq Distrib 2")
 ```
 
