@@ -127,7 +127,7 @@ but I = 1 infectious individual per simulation
 
 ```{r Tuberculosis}
 better_monte <- function(m = 10000, dis_quanta, quanta_sd, room_size = 132, 
-                         infected_individuals = 1, room_venti_rate = 4){ 
+                         infected_individuals = 1, ACH = 4){ 
   probability_inf <- numeric(m)
   num_new_infect <- numeric(m)
   sus_persons <- numeric(m)
@@ -141,11 +141,10 @@ better_monte <- function(m = 10000, dis_quanta, quanta_sd, room_size = 132,
     
     q_2 <- infected_individuals * phi_2
  
-    n_t <- (q_2/room_venti_rate) * (1 - exp(-room_venti_rate*t_2))
     
-    nucci <- ((p_2*q_2)/room_size) * 
-      ((room_venti_rate * t_2 + exp(-room_venti_rate * 
-                                      t_2) -1) / (room_venti_rate^2))
+    nucci <- ((p_2*q_2)/room_vol) * 
+      ((ACH * t_2 + exp(-ACH * 
+                                      t_2) -1) / (ACH^2))
     
     S_t <- S0 * exp(-nucci)
     
@@ -173,23 +172,32 @@ better_monte <- function(m = 10000, dis_quanta, quanta_sd, room_size = 132,
 }
 
 TB <- better_monte(10000, dis_quanta = 12.7, quanta_sd = 3.0,
-                   room_size = 132, infected_individuals = 1, 
-                   room_venti_rate = 4)
+                   room_vol = 132, infected_individuals = 1, 
+                   ACH = 4)
 
 mean(TB$prob)
-h <- hist(TB$prob, breaks = 35, main = "TB Replication")
-h$counts <- h$counts / sum(h$counts) * 100
-plot(h, main = "TBL Prob Freq Distrib")
 
-dens <- density(TB$prob)
-dens$y <- dens$y / sum(dens$y) *100
-plot(dens, main = "TB: Prob Freq Distrib 2")
+TB_df <- data.frame(prob = TB$prob)
+
+TB_plot <- ggplot(data = TB_df, aes(x = prob)) + 
+  geom_histogram(aes(y = ..density.. *100),
+                 bins = 35, 
+                 fill = "lightgrey",
+                 color = "black") + 
+  geom_density(color = "darkred", linewidth = 1) +
+  labs(title = "TB Prob. Distrib.",
+       x = "Prob. of Infection",
+       y = "Percentage of Simulations")
+
+TB_plot
+
+
 ```
 
 ```{r Measles}
 Measles <- better_monte(10000, dis_quanta = 100, quanta_sd = 25.0,
-                   room_size = 132, infected_individuals = 1, 
-                   room_venti_rate = 4)
+                   room_vol = 132, infected_individuals = 1, 
+                   ACH = 4)
 
 mean(Measles$prob)
 hMeas <- hist(Measles$prob, breaks = 35, main = "Measles Replication")
@@ -208,8 +216,8 @@ plot(densM, main = "Measles: Prob Freq Distrib 2")
 
 ```{r Influenza}
 Influenza <- better_monte(10000, dis_quanta = 570, quanta_sd = 173.0,
-                   room_size = 132, infected_individuals = 1, 
-                   room_venti_rate = 4)
+                   room_vol = 132, infected_individuals = 1, 
+                   ACH = 4)
 
 mean(Influenza$prob)
 
