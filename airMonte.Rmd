@@ -55,41 +55,48 @@ hist(we_want , breaks = 35, main = "Monte Carlo Air Replication")
 air_monte <- function(m = 10000, quanta_mean, quanta_sd, 
                       room_vol=132, infect=1, vent_mean=4, vent_sd=1, 
                       breath_mean=0.48, breath_sd=0.2, 
-                      time_mean=0.5, time_sd=0.167, s_mean = 19, s_sd=10){
-  prob_vec <- numeric(m)
-  infect_vect <- numeric(m)
-  s_after <- numeric(m)
+                      time_mean=0.5, time_sd=0.167, s_mean = 19, s_sd=10) {
+
   
-  for (i in 1:m) {
-    p <- max(rnorm(1, breath_mean, breath_sd), 0)
-    phi <- max(rnorm(1, quanta_mean, quanta_sd), 0)
-    t <- max(rnorm(1, time_mean, time_sd), 0)
-    Q <- max(rnorm(1, vent_mean, venth_sd), 0.01)
-    S0 <- max(round(rnorm(1, s_mean, s_sd)), 1)
+    p_vec <- pmax(rnorm(m, breath_mean, breath_sd), 0)
+    phi_vec <- pmax(rnorm(m, quanta_mean, quanta_sd), 0)
+    t_vec <- pmax(rnorm(m, time_mean, time_sd), 0)
+    Q_vec <- pmax(rnorm(m, vent_mean, venth_sd), 0.01)
+    S0_vec <- pmax(round(rnorm(m, s_mean, s_sd)), 1)
+    I_vec <- infect
     
       # exposure term
-    X <- (infect * phi * p * t) / Q
+    X_vec <- (I_vec * phi_vec * p_vec * t_vec) / Q_vec
     
       # infection prob. 
-    P <- 1 - exp(-X)
+    P_vec <- 1 - exp(-X_vec)
     
-      # expected infections
-    exp_inf <- S0 * P
+    new_infect <- S0_vec * P_vec
+    S_after <- S0_vec - new_infect
     
-    prob_vec[i] <- P
-    infect_vect[i] <- exp_inf
-    s_after[i] <- S0 - exp_inf
-  }
- 
-  return(list(
-    prob=prob_vec, infections=infect_vect, non_infected = s_after,
-    summary = list(
-      mean_prob = mean(prob_vec),
-      mean_infections = mean(inf_vect),
-      prob_quantiles = quantile(prob_vec, c(0.25,0.5,0.75,0.9,0.95)),
-      inf_quantiles = quantile(infect_vect, c(0.25,0.5,0.75,0.9,0.95))
+    res_df <- tiblle::tible(
+      p = p_vec, phi=phi_vec, t=t_vec, Q=Q_vec, S0=S0_vec, 
+      X=X_vec, prob=P_vec, infections=new_infect, survivors=S_after
     )
-  ))
+    
+    summ <- list(
+      mean_prob = mean(res_df$prob),
+      mean_infections = mean(res_df$infections),
+      prob_quantiles = quantile(res_df$prob, c(0.25,0.5,0.775,0.9,0.95)),
+      inf_quantiles = quantile(res_df$infections, c(0.25,0.5,0.775,0.9,0.95))
+    )
+    return(list(data=res_df, summary=summ))
+}
+
+
+
+plot_prob <- function(sim_res, title="Infection Prob. Distribution"){
+  df <- sim_res$data
+  ggplot(df, aes(x=prob)) +
+    geom_histogram(aes(y=..count.. / sum(..count..) * 100), bins=35, closed="left") +
+    labs(x="Infection Prob. for an Individual(P)", 
+         y="Percent of Simulation (%)",
+         title=title)
 }
 ```
 
