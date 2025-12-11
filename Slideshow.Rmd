@@ -21,19 +21,32 @@ In ur article. the researchers attempt to predict the infection rate of an airbo
 # Assumptions
 - Only one infected person in the waiting room
 - Once infected, the person can not infect others
-- The air being ventilated throught the room is mixed air and infection (not being filtered)
+- The air being ventilated through the room is mixed air and infection (not being filtered)
 
 ## Replication
 
 We had 2 main going into this project:
 - we wanted to test their infection rate they found by changing different variables such as room size and how many people were infected
 - we wanted to replicate their Monte Carlo approach and apply it to a different disease (SARS)
+- quantum - the amount of airborne material required to infect a majority of susceptible individuals exposed to it
+
+## Scenario 1
+
+
+
+## Scenario 2
+
+
+
+## Scenario 3
+
+
 
 ## Results
 
 
 ## New Disease
-
+The disease we wanted to test everything with was SARS. SARS, or severe acute respiratory syndrome, is another common respiratory illness that is typically spread through the air and vbeing is close contact with an infected person. 
 
 ## Conclusion
 
