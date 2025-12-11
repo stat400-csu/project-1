@@ -16,12 +16,13 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Article
 
-In ur article. the researchers attempt to predict the infection rate of an airborne disease when waiting in a waiting room. They did their study on TB, Measles, and Influenza. They had had specific requirements of room size, ventilation rate, ...
+In our article, the researchers attempt to predict the infection rate of an airborne disease when waiting in a waiting room. They did their study on Tuberculous, Measles, and Influenza. They had had specific requirements of room size, ventilation rate, ...
 
 ## Assumptions
+
 - Only one infected person in the waiting room
 - Once infected, the person can not infect others
-- The air being ventilated through the room is mixed air and infection (not being filtered)
+- The air being ventilated through the room is mixture of outside air and "infected" air (not being filtered)
 
 ## Replication
 
@@ -32,13 +33,17 @@ We had 2 main going into this project:
 
 ## Scenario 1
 
+The room sizer is has an increased size than the one in the article. The exposure time is longer by ____. There is still only one infected person in the room. Before hand, we predicted that the infection probability would decrease. 
 
 
 ## Scenario 2
 
+The room sizer was the same as the one in the article. The exposure time is longer by ____. There is now two infected people in the room. Before hand, we predicted that the infection probability would increase. 
 
 
 ## Scenario 3
+
+The room sizer is has an increased size than the one in the article. The exposure time is shorter by ____.There is now two infected people in the room. Before hand, we predicted that the infection probability would decrease. 
 
 
 
@@ -46,7 +51,10 @@ We had 2 main going into this project:
 
 
 ## New Disease
-The disease we wanted to test everything with was SARS. SARS, or severe acute respiratory syndrome, is another common respiratory illness that is typically spread through the air and vbeing is close contact with an infected person. 
+The disease we wanted to test everything with was SARS. SARS, or severe acute respiratory syndrome, is another common respiratory illness that is typically spread through the air and being is close contact with an infected person. The quanta was: ; the results were: 
+
+
+
 
 ## Conclusion
 
