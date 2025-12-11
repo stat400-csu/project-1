@@ -1,0 +1,21 @@
+
+
+/* Slide titles */
+h2 {
+  color: darkblue;       /* change text color */
+  font-size: 36px;       /* change text size */
+  font-family: Sans-Serif, sans-serif; /* optional: change font */
+}
+
+/* Slide body text */
+p {
+  color: purple;          /* change color */
+  font-size: 24px;       /* change size */
+  line-height: 1.6;      /* optional: spacing between lines */
+}
+
+/* Bullet points */
+li {
+  color: black;      /* text color */
+  font-size: 20px;       /* text size */
+}
