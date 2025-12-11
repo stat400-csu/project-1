@@ -237,6 +237,29 @@ plot(densFLU, main = "Influenza: Prob Freq Distrib 2")
 ```
 
 
+```{r SARS}
+SARS <- better_monte(10000, dis_quanta = 2.7, quanta_sd = 1.2,
+                   room_vol = 132, infected_individuals = 1, 
+                   ACH = 4)
+
+mean(SARS$prob)
+
+hSARS <- hist(SARS$prob, breaks = 35, main = "SARS Graph")
+
+hSARS$counts <- hSARS$counts / sum(hSARS$counts) * 100
+
+plot(hSARS, main = "SARS Prob Freq Distrib")
+
+
+densSARS <- density(SARS$prob)
+
+densSARS$y <- densSARS$y / sum(densSARS$y) *100
+
+plot(densSARS, main = "SARS: Prob Freq Distrib 2")
+
+```
+
+
 ## Extended Section:
 (Where we run through SARS quanta and compare it to the 3 other diseases from 
 the study)
@@ -352,8 +375,9 @@ sum_dis_round
 TB_df$Disease <- "TB"
 Measles_df <- data.frame(prob=Measles$prob, Disease = "Measles")
 Influenza_df <- data.frame(prob=Influenza$prob, Disease = "Influenza")
+SARS_df <- data.frame(prob=SARS$prob, Disease="SARS")
 
-combined_df <- rbind(TB_df, Measles_df, Influenza_df)
+combined_df <- rbind(TB_df, Measles_df, Influenza_df, SARS_df)
 
 ggplot(combined_df, aes(x=prob, fill=Disease, color=Disease)) +
   geom_histogram(aes(y= ..count.. / sum(..count..) * 100),
@@ -362,9 +386,9 @@ ggplot(combined_df, aes(x=prob, fill=Disease, color=Disease)) +
        x = "Probability of Infection",
        y = "Percentage of Simulations") +
   scale_color_manual(values = c("TB" = "green", "Measles" = "magenta",
-                               "Influenza"="blue")) +
+                               "Influenza"="blue", "SARS"="yellow3")) +
   scale_fill_manual(values = c("TB" = "green", "Measles" = "magenta",
-                               "Influenza"="blue")) +
+                               "Influenza"="blue", "SARS"="yellow3")) +
   theme_minimal()
 
 ```
