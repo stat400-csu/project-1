@@ -143,8 +143,7 @@ better_monte <- function(m = 10000, dis_quanta, quanta_sd, room_vol = 132,
  
     
     nucci <- ((p_2*q_2)/room_vol) * 
-      ((ACH * t_2 + exp(-ACH * 
-                                      t_2) -1) / (ACH^2))
+      ((ACH * t_2 + exp(-ACH *t_2) -1) / (ACH^2))
     
     S_t <- S0 * exp(-nucci)
     
