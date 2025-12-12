@@ -1,11 +1,12 @@
 ---
 title: "Monte Carlo Applied to Infectious Airborne Diseases"
-subtitle: "Stat 400"
-author: "Group 1: Robin Thrush and Kaitlynn Walston"
-output: 
+author: 'Group 1: Robin Thrush and Kaitlynn Walston'
+subtitle: Stat 400
+output:
   ioslides_presentation:
     css: styles.css
-    indentation: TRUE
+    indentation: true
+  beamer_presentation: default
 ---
 
 ```{r setup, include=FALSE}
