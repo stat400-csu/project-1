@@ -8,20 +8,16 @@ output:
 ---
 
 ## Introduction:
-*Beggs, et al.* constructed a stochastic Monte Carlo model to better understand the transmission of airborne infection in a hypothetical hospital space with volume 132m^3. Their working variables were all randomly sampled from normal distribution. The authors explained how for each variable they pulled means and standard deviations from other papers that had the empirical data ready and available. For example, the pulmonary rate of susceptible individuals was modeled with a mean of 0.48m^3/h and a standard deviation of 0.2m^3/h. Other variables were held constant for each simulation such as exposure time, the number of infected individuals, room size, and air change rate.
+*Beggs, et al.* constructed a stochastic Monte Carlo model to better understand the transmission of airborne infection in a hypothetical hospital waiting room space with a volume of 132m^3. Their working variables were all randomly sampled from a normal distribution. The authors explained how for each variable, they pulled means and standard deviations from other papers that had the empirical data ready and available. For example, the pulmonary rate of susceptible individuals was modeled with a mean of 0.48m^3/h and a standard deviation of 0.2m^3/h. Other variables were held constant for each simulation such as exposure time, the number of infected individuals, room size, and air change rate.
 
 The actual equation was calculating the probability that susceptible individuals would contract the airborne disease. They simulated results for tuberculosis, measles, and influenza. 
 
-The goal for this project is to be able to replicate the stochastic Monte Carlo that they built. The extension portion includes seeing what the model would predict for a whole different airborne disease (SARS) and how it is different or the same from the other diseases. Also, how changing the constant variables would impact the predicted probability of infection for TB, measles, and the flu. 
-
+The goal for this project is to be able to replicate their stochastic Monte Carlo model. We want to change some of their constant variables in order to see how much effect each variable has on the predicted probability of infection for  TB, measles, and the flu. Also, the extension portion of this project includes seeing what the model would predict for a whole different airborne disease (SARS) and how it is different or the same from the other diseases in its predicted infectious rate.
 
 # Assumptions in the study:
-The researchers in the study set specific assumptions in order to make sure they could easily understand their experiment. The assumptions were:
-- only one infectious individual is present in their waiting room
-- that the susceptible individuals can get infected but can not infect others 
-- outside air is constantly being ventilated into the room - air is well mixed with the infectious particles evenly distributed throughout the room.
+The researchers in the study set specific assumptions in order to make sure they could easily understand their experiment. The assumptions were that: only one infectious individual is present in their waiting room, the susceptible individuals can get infected but can not infect others, outside air is constantly being ventilated into the room, and air particles are a mixture of infectious and normal air and are evenly distributed throughout the room.
 
-(why do we think they chose to normally distribute their variables)
+We wanted to mostly follow these assumptions, except the number of infectious people in the room. Keeping the other assumptions helped contain the infectious rate, where if the susceptible individual could infect others, the predicted probability of infection would grow exponentially. 
 
 
 ## Equation Explanation:
@@ -50,7 +46,9 @@ n: number of quanta of infection in the air the quantum generation rate
 As previously stated, Beggs et al. wrote a detailed paper, making the process of replicating their simulation smooth.
 
 
-We started by defining: a function that takes the number of simulations, the mean quanta rate, the standard deviation of the quanta rate, room volume, the number of infected individuals, and the room ventilation rate. We needed variables for: the probability of infection for the susceptible individuals, the number of newly infected individuals, and the number of susceptible individuals. Inside our for loop, we define the variables: pulmonary ventilation rate, the quantum generation rate, the exposure time, initial number of susceptible individuals at time = 0. The 4 variables mentioned above are set to be our normally distributed randomly generated values (using *rnorm()*), with each of their means and standard deviations defined from the study. We define total rate of quanta generation by all infectors (quanta/min) by multiplying out number of infected individuals by the quanta rate.
+In trying to follow this, we started by defining: a function that takes the number of simulations, the mean quanta rate, the standard deviation of the quanta rate, room volume, the number of infected individuals, and the room ventilation rate. We needed variables for: the probability of infection for the susceptible individuals, the number of newly infected individuals, and the number of susceptible individuals. Inside our for loop, we define the variables: pulmonary ventilation rate, the quantum generation rate, the exposure time, initial number of susceptible individuals at time = 0. The 4 variables mentioned above are set to be our normally distributed randomly generated values (using *rnorm()*), with each of their means and standard deviations defined from the study. We define total rate of quanta generation by all infectors (quanta/min) by multiplying out number of infected individuals by the quanta rate.
+
+*For each prediction test, we ran 10,000 simulations. 
 
 (explain the iterations, the structure of the code, and the results we got vs the results Beggs got. )
 
@@ -58,6 +56,10 @@ We started by defining: a function that takes the number of simulations, the mea
 ## SARS Findings:
 
 (we need the source from where we found the SARS quanta, same assumptions, and the results)
+
+On top of trying to replicate their monte carlo model, we also wanted to test out the model with another infectious disease. We researched the SARS disease. *Mikszewski et al* wrote in a National Library of Medicine article that the estimate of infectious rate is about 2.7 quanta per hour with a standard deviation of 1.2 quanta. 
+
+
 
 
 ## Scenario 1 & 2 Findings:
