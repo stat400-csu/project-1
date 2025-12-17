@@ -193,7 +193,7 @@ TB_plot
 
 ```
 
-```{r Measles}
+```{r Flu}
 Measles <- better_monte(10000, dis_quanta = 100, quanta_sd = 25.0,
                    room_vol = 132, infected_individuals = 1, 
                    ACH = 4)
