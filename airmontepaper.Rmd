@@ -103,11 +103,9 @@ scenario_monte <- function(m = 10000, dis_quantaS, quanta_sdS, room_vol = 300,
 }
 ```
 
-<<<<<<< HEAD
 We wanted to create 2 different scenarios where we can change a few variables in order to see what variables were the most impactful in effecting the infectious prediction rate. For the first scenario, we wanted to increase the room volume, as well as the exposure time. We did this to test if increasing the room size would decrease the infectious rate, or if the longer exposure time, regardless of the room size, would have a larger effect. We increased the room volume size from 132 $m^3$ to 300 $m^3$. We also increased the exposure rate of susceptible individuals by the infected from 30 seconds to 60 minutes. As a result of this experiment, our results showed that probability infection rate stayed very low, where most of our simulations stayed around 0-5% and barely other simulations reached past 25%. This showed us that the room volume was more impactful to the infection rate over the exposure time, since the infection rate did not increase. 
-=======
+
 We wanted to create 2 different scenarios where we can change a few variables in order to see what variables were the most impactful in effecting the infectious prediction rate. For the first scenario, we wanted to increase the room volume, as well as the exposure time. We did this to test if increasing the room size would decrease the infectious rate, or if the longer exposure time, regardless of the room size, would have a larger effect. We increased the room volume size from 132 $m^3$ to 300 $m^3$. We also increased the exposure rate of susceptible individuals by the infected from 30 seconds to 60 minutes. As a result of this experiment, our results showed: 
->>>>>>> 5d471910a0f27cec28d047611a8e1446119e8473
 
 ```{r Scenario 1 Graph, warning=FALSE, echo=FALSE}
 scen1_TB <- scenario_monte(10000, dis_quanta = 12.7, quanta_sd = 3.0,
@@ -179,14 +177,6 @@ ggplot(comb_df2, aes(x=prob, fill=Disease, color=Disease)) +
 
 ## Discussion:
 
-Scenario 1 Results:
-
-
-
-Scenario 2 Results:
-
-
-
 Limitations:
 
 
@@ -198,11 +188,7 @@ Limitations:
 From replicating the study:
 The takeaway from the process is that the higher quanta rate an airborne disease has the probability that susceptible individuals would contract the infection increases. 
 
-From scenario 1:
-
-
-From Scenario 2:
-
+One limitation that we had when faced with everything was that neither of us have a lot of scientific knowledge and understanding. A lot of background research had to go into what even the researchers were talking about, to be able to break down into ideas we could understand and try to replicate. 
 
 
 
