@@ -56,7 +56,7 @@ compare_table
 
 On top of trying to replicate their monte carlo model, we also wanted to test out the model with another infectious disease. We researched the SARS disease. *Mikszewski et al* wrote in a National Library of Medicine article that the estimate of infectious rate is about 2.7 quanta per hour with a standard deviation of 1.2 quanta. 
 
-
+## report the mean probability that was found and insert the histogram.
 
 
 ## Scenario 1 & 2 Findings:
