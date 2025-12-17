@@ -22,7 +22,7 @@ We wanted to mostly follow these assumptions, except the number of infectious pe
 ## Equation Explanation:
 The equation that Beggs et al. used was taken further from an original probability equation made by Wells in 1955. Wells had defined quantum as a unit of infectious dose. The inhalation of one quantum droplets in the air and stated it would infect 1 - (1/e) (~63.2%) of the exposed animals. So, if 1 quantum is inhaled, the probability of infection to the person is 63.2%. In 1997 the Wells equation was extended by two researchers to build the Gammaitoni-Nucci version. In their version they accounted for finite exposure time, ventilation rates, and quanta concentration in indoor spaces. Beggs et al. implemented the Gammaitoni-Nucci since they were testing the airborne diseases in a hypothetical indoor space. Beggs et al. drew quanta rates for the different diseases from studies that estimated the rates. These quanta rates were essential for the model as played a main role in predicting the probability of infection in the Monte Carlo Simulations: TB(12.7), Measles(570), and Flu(100).
 
-## Brief: Components of the EQN
+## Components of the EQN:
 P: probability of infection on susceptible individuals
 S: number of susceptible individuals
 p: pulmonary ventilation rate 
