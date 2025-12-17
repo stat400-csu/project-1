@@ -1,6 +1,6 @@
 ---
 title: "Monte Carlo Replication for Infection Rates"
-date: "December 5th, 2025"
+date: "December 17th, 2025"
 author: "Robin Thrush and Kaitlynn Walston"
 output: 
   pdf_document:
@@ -12,19 +12,15 @@ output:
 
 The actual equation was calculating the probability that susceptible individuals would contract the airborne disease. They simulated results for tuberculosis, measles, and influenza. 
 
-The goal for this project is to be able to replicate their stochastic Monte Carlo model. We want to change some of their constant variables in order to see how much effect each variable has on the predicted probability of infection for  TB, measles, and the flu. Also, the extension portion of this project includes seeing what the model would predict for a whole different airborne disease (SARS) and how it is different or the same from the other diseases in its predicted infectious rate.
+The goal for this project is to be able to replicate the author's stochastic Monte Carlo model. The model is stochastic in the sense that key variables are treated as random and for each simulation they are randomly sampled from the normal distribution. The randomness embodies the natural variability of the factors that influence airborne disease transmission. We want to change some of their constant variables like number of infected individuals, room size, and exposure time, in order to see how much effect each variable has on the predicted probability of infection for  TB, measles, and the flu. Also, the extension portion of this project includes seeing what the model would predict for a whole different airborne disease (SARS) and how it is different or the same from the other diseases in its predicted infectious rate.
 
 # Assumptions in the study:
 The researchers in the study set specific assumptions in order to make sure they could easily understand their experiment. The assumptions were that: only one infectious individual is present in their waiting room, the susceptible individuals can get infected but can not infect others, outside air is constantly being ventilated into the room, and air particles are a mixture of infectious and normal air and are evenly distributed throughout the room.
 
 We wanted to mostly follow these assumptions, except the number of infectious people in the room. Keeping the other assumptions helped contain the infectious rate, where if the susceptible individual could infect others, the predicted probability of infection would grow exponentially. 
 
-
 ## Equation Explanation:
-The equation that Beggs et al. used was taken further from an original probability equation made by Wells in 1955. Wells had defined quantum as the amount of infectious droplets in the air and stated it would infect 1 - (1/e) (~63.2%) of the exposed animals. So, if 1 quantum is inhaled, the probability of infection to the person is 63.2%. Beggs et al. drew quanta rates for the different diseases from studies that estimated the rates. These quanta rates were essential for the model as it was one of the main inputs: TB(12.7), Measles(570), and Flu(100).
-
--- Talk abt. Gammaitoni-Nucci, stochastisity, what they looked like inside the function??
-
+The equation that Beggs et al. used was taken further from an original probability equation made by Wells in 1955. Wells had defined quantum as a unit of infectious dose. The inhalation of one quantum droplets in the air and stated it would infect 1 - (1/e) (~63.2%) of the exposed animals. So, if 1 quantum is inhaled, the probability of infection to the person is 63.2%. In 1997 the Wells equation was extended by two researchers to build the Gammaitoni-Nucci version. In their version they accounted for finite exposure time, ventilation rates, and quanta concentration in indoor spaces. Beggs et al. implemented the Gammaitoni-Nucci since they were testing the airborne diseases in a hypothetical indoor space. Beggs et al. drew quanta rates for the different diseases from studies that estimated the rates. These quanta rates were essential for the model as played a main role in predicting the probability of infection in the Monte Carlo Simulations: TB(12.7), Measles(570), and Flu(100).
 
 ## Brief: Components of the EQN
 P: probability of infection on susceptible individuals
@@ -45,13 +41,19 @@ n: number of quanta of infection in the air the quantum generation rate
 ## Replicating the Model Process:
 As previously stated, Beggs et al. wrote a detailed paper, making the process of replicating their simulation smooth.
 
+In trying to follow this, we started by defining: a function has parameters for the number of simulations, the mean quanta rate, the standard deviation of the quanta rate, room volume, the number of infected individuals, and the room ventilation rate. We needed variables that keep track of: the probability of infection for the susceptible individuals, the number of newly infected individuals, and the number of susceptible individuals for each rep of the simulation. Inside our for loop, we define the variables: pulmonary ventilation rate, the quantum generation rate, the exposure time, initial number of susceptible individuals at time = 0. The 4 variables mentioned above are set to be our normally distributed randomly generated values (using *rnorm()*), with each of their means and standard deviations defined from the study. We define total rate of quanta generation by all infectors (quanta/min) by multiplying out number of infected individuals by the quanta rate. We then constructed the equation and and at the end of 10,000 simulations we had a vector of the probability of infection for susceptible individuals. We took the mean of the probability. This was able to get our estimates that were similar to Beggs. study. This can be seen in the table below.
 
-In trying to follow this, we started by defining: a function that takes the number of simulations, the mean quanta rate, the standard deviation of the quanta rate, room volume, the number of infected individuals, and the room ventilation rate. We needed variables for: the probability of infection for the susceptible individuals, the number of newly infected individuals, and the number of susceptible individuals. Inside our for loop, we define the variables: pulmonary ventilation rate, the quantum generation rate, the exposure time, initial number of susceptible individuals at time = 0. The 4 variables mentioned above are set to be our normally distributed randomly generated values (using *rnorm()*), with each of their means and standard deviations defined from the study. We define total rate of quanta generation by all infectors (quanta/min) by multiplying out number of infected individuals by the quanta rate.
+```{r table}
 
-*For each prediction test, we ran 10,000 simulations. 
-
-(explain the iterations, the structure of the code, and the results we got vs the results Beggs got. )
-
+compare_table <- data.frame(TB = c("Beggs_TB", 
+                                  "Our_TB"),
+                            TB_vals = c(0.0034,0.00328),
+                            Flu = c("Beggs_Flu","Our_Flu"),
+                            Flu_vals = c(0.0262, 0.0259),
+                            Measles = c("Beggs_Meas", "Our_Meas"), 
+                            Meas_vals = c(0.1349,0.1340))
+compare_table
+```
 
 ## SARS Findings:
 
