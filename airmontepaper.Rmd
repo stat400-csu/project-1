@@ -33,7 +33,6 @@ t: exposure time to susceptible individuals
 n: number of quanta of infection in the air the quantum generation rate
 ϕ: the total rate of quanta generation by all infectors 
 
-(q = Iϕ) (explain)
 
 ## Replicating the Model Process:
 As previously stated, Beggs et al. wrote a detailed paper, making the process of replicating their simulation smooth.
