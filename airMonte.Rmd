@@ -203,11 +203,11 @@ Flu <- better_monte(10000, dis_quanta = 100, quanta_sd = 25.0,
                    ACH = 4)
 
 mean(Flu$prob)
-hMeas <- hist(Flu$prob, breaks = 35, main = "Measles Replication")
+hFlu <- hist(Flu$prob, breaks = 35, main = "Flu Replication")
 
-hFLu$counts <- hFlu$counts / sum(hFlu$counts) * 100
+hFlu$counts <- hFlu$counts / sum(hFlu$counts) * 100
 
-plot(h, main = "Flu Prob Freq Distrib")
+plot(hFlu, main = "Flu Prob Freq Distrib")
 
 
 densF <- density(Flu$prob)
