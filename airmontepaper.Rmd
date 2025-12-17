@@ -184,6 +184,8 @@ The results from scenario 2 show that keeping the room volume at 132 m^3, the ex
 
 
 Limitations:
+The extension part of our study with the scenarios was meant to understand how different the probability changed under different conditions. We understood room volume and that it is calculated by width, length, and area, but it was difficult to envision the actual size of the room. For scenario 1, when we stated that the volume of the room is to be 300, we weren't actually sure, just how much bigger that room is becoming. This is a limitation because we aren't actually understanding the change between the standard room and the room size we're changing to, we just know it's important for calculating the transmission in a different enviroment. 
+
 
 
 
