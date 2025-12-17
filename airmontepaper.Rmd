@@ -36,9 +36,7 @@ n: number of quanta of infection in the air the quantum generation rate
 (q = Iϕ) (explain)
 
 ## Replicating the Model Process:
-As previously stated, Beggs et al. wrote a detailed paper, making the process of replicating their simulation smooth.
-
-In trying to follow this, we started by defining: a function has parameters for the number of simulations, the mean quanta rate, the standard deviation of the quanta rate, room volume, the number of infected individuals, and the room ventilation rate. We needed variables that keep track of: the probability of infection for the susceptible individuals, the number of newly infected individuals, and the number of susceptible individuals for each rep of the simulation. Inside our for loop, we define the variables: pulmonary ventilation rate, the quantum generation rate, the exposure time, initial number of susceptible individuals at time = 0. The 4 variables mentioned above are set to be our normally distributed randomly generated values (using *rnorm()*), with each of their means and standard deviations defined from the study. We define total rate of quanta generation by all infectors (quanta/min) by multiplying out number of infected individuals by the quanta rate. We then constructed the equation and and at the end of 10,000 simulations we had a vector of the probability of infection for susceptible individuals. We took the mean of the probability. This was able to get our estimates that were similar to Beggs. study. This can be seen in the table below.
+As previously stated, Beggs et al. wrote a detailed paper, making the process of replicating their simulation smooth. In trying to follow this, we started by defining: a function has parameters for the number of simulations, the mean quanta rate, the standard deviation of the quanta rate, room volume, the number of infected individuals, and the room ventilation rate. We needed variables that keep track of: the probability of infection for the susceptible individuals, the number of newly infected individuals, and the number of susceptible individuals for each rep of the simulation. Inside our for loop, we define the variables: pulmonary ventilation rate, the quantum generation rate, the exposure time, initial number of susceptible individuals at time = 0. The 4 variables mentioned above are set to be our normally distributed randomly generated values (using *rnorm()*), with each of their means and standard deviations defined from the study. We define total rate of quanta generation by all infectors (quanta/min) by multiplying out number of infected individuals by the quanta rate. We then constructed the equation and and at the end of 10,000 simulations we had a vector of the probability of infection for susceptible individuals. We took the mean of the probability. This was able to get our estimates that were similar to Beggs. study. This can be seen in the table below.
 
 ```{r table}
 
@@ -61,14 +59,7 @@ On top of trying to replicate their monte carlo model, we also wanted to test ou
 
 ## Scenario 1 & 2 Findings:
 
-(obvs detail the scenarios, why we chose them, eqns, and resuts)
-Scenario 1: room size increased from 132 m^3 to 300 m^3
-Exposure time was increased from 30 minutes to 1 hour of exposure
-only 1 infected individuals
-
-We wanted to create 2 different scenarios where we can change a few variables in order to see what variables were the most impactful in effecting the infectious prediction rate. For the first scenario, we wanted to increase the room volume, as well as the exposure time. We did this to test if increasing the room size would decrease the infectious rate, or if the longer exposure time, regardless of the room size, would have a larger effect. We increased the room volume size from 132 $m^3$ to 300 $m^3$. We also increased the exposure rate of susceptible individuals by the infected from 30 seconds to 60 minutes. 
-
-As a result of this experiment, our results showed: 
+We wanted to create 2 different scenarios where we can change a few variables in order to see what variables were the most impactful in effecting the infectious prediction rate. For the first scenario, we wanted to increase the room volume, as well as the exposure time. We did this to test if increasing the room size would decrease the infectious rate, or if the longer exposure time, regardless of the room size, would have a larger effect. We increased the room volume size from 132 $m^3$ to 300 $m^3$. We also increased the exposure rate of susceptible individuals by the infected from 30 seconds to 60 minutes. As a result of this experiment, our results showed: 
 
 ```{r Scenario 1 Graph, warning=FALSE, echo=FALSE}
 scen1_TB <- scenario_monte(10000, dis_quanta = 12.7, quanta_sd = 3.0,
@@ -100,7 +91,6 @@ ggplot(comb_df1, aes(x=prob, fill=Disease, color=Disease)) +
                                "Influenza"="blue")) +
   theme_minimal()
 ```
-
 
 For the second scenario, we wanted to keep the original tested room volume size of 132 $m^3$, as well as the original exposure time at 30 minutes. However we wanted to increase the number of infected individuals from one person to two people. We wanted to do this to see how much increasing the number of infected people would increase the infection rate. We can see from the results that: 
 
