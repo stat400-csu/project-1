@@ -103,7 +103,11 @@ scenario_monte <- function(m = 10000, dis_quantaS, quanta_sdS, room_vol = 300,
 }
 ```
 
+<<<<<<< HEAD
+We wanted to create 2 different scenarios where we can change a few variables in order to see what variables were the most impactful in effecting the infectious prediction rate. For the first scenario, we wanted to increase the room volume, as well as the exposure time. We did this to test if increasing the room size would decrease the infectious rate, or if the longer exposure time, regardless of the room size, would have a larger effect. We increased the room volume size from 132 $m^3$ to 300 $m^3$. We also increased the exposure rate of susceptible individuals by the infected from 30 seconds to 60 minutes. As a result of this experiment, our results showed that probability infection rate stayed very low, where most of our simulations stayed around 0-5% and barely other simulations reached past 25%. This showed us that the room volume was more impactful to the infection rate over the exposure time, since the infection rate did not increase. 
+=======
 We wanted to create 2 different scenarios where we can change a few variables in order to see what variables were the most impactful in effecting the infectious prediction rate. For the first scenario, we wanted to increase the room volume, as well as the exposure time. We did this to test if increasing the room size would decrease the infectious rate, or if the longer exposure time, regardless of the room size, would have a larger effect. We increased the room volume size from 132 $m^3$ to 300 $m^3$. We also increased the exposure rate of susceptible individuals by the infected from 30 seconds to 60 minutes. As a result of this experiment, our results showed: 
+>>>>>>> 5d471910a0f27cec28d047611a8e1446119e8473
 
 ```{r Scenario 1 Graph, warning=FALSE, echo=FALSE}
 scen1_TB <- scenario_monte(10000, dis_quanta = 12.7, quanta_sd = 3.0,
@@ -180,12 +184,10 @@ Scenario 1 Results:
 
 
 Scenario 2 Results:
-The results from scenario 2 show that keeping the room volume at 132 m^3, the exposure time at 30 minutes, but changing the number of infected individuals to 2 will drastically change the probability of infection. This is shown above, and we can see that the distribution is a lot more spread out. We can see that more simulations ended up with higher probability of infection. Contracting the flu became the most likely to contract, with much higher probability, then measles, and the simulations showed that TB was still lower probability among all three. 
+
 
 
 Limitations:
-The extension part of our study with the scenarios was meant to understand how different the probability changed under different conditions. We understood room volume and that it is calculated by width, length, and area, but it was difficult to envision the actual size of the room. For scenario 1, when we stated that the volume of the room is to be 300, we weren't actually sure, just how much bigger that room is becoming. This is a limitation because we aren't actually understanding the change between the standard room and the room size we're changing to, we just know it's important for calculating the transmission in a different environment. 
-
 
 
 
