@@ -15,9 +15,7 @@ The goal for this project is to be able to replicate the author's stochastic Mon
 
 # Assumptions in the study:
 
-The researchers in the study set specific assumptions in order to make sure they could easily understand their experiment. The assumptions were that: only one infectious individual is present in their waiting room, the susceptible individuals can get infected but can not infect others, outside air is constantly being ventilated into the room, and air particles are a mixture of infectious and normal air and are evenly distributed throughout the room.
-
-We wanted to mostly follow these assumptions, except the number of infectious people in the room. Keeping the other assumptions helped contain the infectious rate, where if the susceptible individual could infect others, the predicted probability of infection would grow exponentially. 
+The researchers in the study set specific assumptions in order to make sure they could easily understand their experiment. The assumptions were that: only one infectious individual is present in their waiting room, the susceptible individuals can get infected but can not infect others, outside air is constantly being ventilated into the room, and air particles are a mixture of infectious and normal air and are evenly distributed throughout the room. We wanted to mostly follow these assumptions, except the number of infectious people in the room. Keeping the other assumptions helped contain the infectious rate, where if the susceptible individual could infect others, the predicted probability of infection would grow exponentially. 
 
 ## Equation Explanation:
 
