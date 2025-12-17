@@ -8,9 +8,7 @@ output:
 ---
 
 ## Introduction:
-*Beggs, et al.* constructed a stochastic Monte Carlo model to better understand the transmission of airborne infection in a hypothetical hospital waiting room space with a volume of 132m^3. Their working variables were all randomly sampled from a normal distribution. The authors explained how for each variable, they pulled means and standard deviations from other papers that had the empirical data ready and available. For example, the pulmonary rate of susceptible individuals was modeled with a mean of 0.48m^3/h and a standard deviation of 0.2m^3/h. Other variables were held constant for each simulation such as exposure time, the number of infected individuals, room size, and air change rate.
-
-The actual equation was calculating the probability that susceptible individuals would contract the airborne disease. They simulated results for tuberculosis, measles, and influenza. 
+*Beggs, et al.* constructed a stochastic Monte Carlo model to better understand the transmission of airborne infection in a hypothetical hospital waiting room space with a volume of 132m^3. Their working variables were all randomly sampled from a normal distribution. The authors explained how for each variable, they pulled means and standard deviations from other papers that had the empirical data ready and available. For example, the pulmonary rate of susceptible individuals was modeled with a mean of 0.48m^3/h and a standard deviation of 0.2m^3/h. Other variables were held constant for each simulation such as exposure time, the number of infected individuals, room size, and air change rate.The actual equation was calculating the probability that susceptible individuals would contract the airborne disease. They simulated results for tuberculosis, measles, and influenza. 
 
 The goal for this project is to be able to replicate the author's stochastic Monte Carlo model. The model is stochastic in the sense that key variables are treated as random and for each simulation they are randomly sampled from the normal distribution. The randomness embodies the natural variability of the factors that influence airborne disease transmission. We want to change some of their constant variables like number of infected individuals, room size, and exposure time, in order to see how much effect each variable has on the predicted probability of infection for  TB, measles, and the flu. Also, the extension portion of this project includes seeing what the model would predict for a whole different airborne disease (SARS) and how it is different or the same from the other diseases in its predicted infectious rate.
 
@@ -37,8 +35,8 @@ n: number of quanta of infection in the air the quantum generation rate
 ## Replicating the Model Process:
 As previously stated, Beggs et al. wrote a detailed paper, making the process of replicating their simulation smooth. In trying to follow this, we started by defining: a function has parameters for the number of simulations, the mean quanta rate, the standard deviation of the quanta rate, room volume, the number of infected individuals, and the room ventilation rate. We needed variables that keep track of: the probability of infection for the susceptible individuals, the number of newly infected individuals, and the number of susceptible individuals for each rep of the simulation. Inside our for loop, we define the variables: pulmonary ventilation rate, the quantum generation rate, the exposure time, initial number of susceptible individuals at time = 0. The 4 variables mentioned above are set to be our normally distributed randomly generated values (using *rnorm()*), with each of their means and standard deviations defined from the study. We define total rate of quanta generation by all infectors (quanta/min) by multiplying out number of infected individuals by the quanta rate. We then constructed the equation and and at the end of 10,000 simulations we had a vector of the probability of infection for susceptible individuals. We took the mean of the probability. This was able to get our estimates that were similar to Beggs. study. This can be seen in the table below.
 
-```{r table}
-
+```{r table, echo=FALSE}
+library(ggplot2)
 compare_table <- data.frame(TB = c("Beggs_TB", 
                                   "Our_TB"),
                             TB_vals = c(0.0034,0.00328),
@@ -51,10 +49,7 @@ compare_table
 
 ## SARS Findings:
 
-On top of trying to replicate their monte carlo model, we also wanted to test out the model with another infectious disease. We researched the SARS disease. *Mikszewski et al* wrote in a National Library of Medicine article that the estimate of infectious rate is about 2.7 quanta per hour with a standard deviation of 1.2 quanta. 
-
-## report the mean probability that was found and insert the histogram.
-
+On top of trying to replicate their monte carlo model, we also wanted to test out the model with another infectious disease. We researched the SARS disease. *Mikszewski et al* wrote in a National Library of Medicine article that the estimate of infectious rate is about 2.7 quanta per hour with a standard deviation of 1.2 quanta. We could see in our results that the predicted mean probability resulted in a probability of 0.153, and had a moderate variability range of 0.072 to 0.369. 
 
 ## Scenario 1 & 2 Findings:
 
