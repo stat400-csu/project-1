@@ -25,8 +25,6 @@ The fourth chunk of code was reworking the third chunk function that we built. W
 
 The next few chunks are labeled as Flu, Measles, and SARs, and these code chunks are using the function and running the respective quantas of each disease through the simulation to get the estimation of probability of infection for susceptible individuals.
 
-The code chunk labeled "summary results"...
-
 The code chunk titled "graph" shows the distribution of the probability of all of the airborne diseases.
 
 The code chunk titled "Scenario 1 TB" applies the changes we made to the room volume and the exposure time and predicted the probability of TB with it. 
