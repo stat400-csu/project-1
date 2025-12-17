@@ -69,7 +69,9 @@ Scenario 1: room size increased from 132 m^3 to 300 m^3
 Exposure time was increased from 30 minutes to 1 hour of exposure
 only 1 infected individuals
 
-We wanted to create 2 different scenarios where we can change a few variables in order to see what variables were the most impactful in effecting the infectious prediction rate. For the first scenario, we wanted to increase the room volume, as well as the exposure time. We did this to test if increasing the room size would decrease the infectious rate, or if the longer exposure time, regardless of the room size, would have a larger effect. We increased the room volume size from 132 m^2 to 300 m^3. We also increased the exposure rate of susceptible individuals by the infected from 30 seconds to 60 minutes. 
+We wanted to create 2 different scenarios where we can change a few variables in order to see what variables were the most impactful in effecting the infectious prediction rate. For the first scenario, we wanted to increase the room volume, as well as the exposure time. We did this to test if increasing the room size would decrease the infectious rate, or if the longer exposure time, regardless of the room size, would have a larger effect. We increased the room volume size from 132 $m^3$ to 300 $m^3$. We also increased the exposure rate of susceptible individuals by the infected from 30 seconds to 60 minutes. 
+
+For the second scenario, we wanted to keep the original tested room volume size of 132 $m^3$, as well as the original exposure time at 30 minutes. However we wanted to increase the number of infected individuals from one person to two people. We wanted to do this to see how much increasing the number of infected people would increase the infection rate. 
 
 
 
