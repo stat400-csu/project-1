@@ -180,7 +180,7 @@ Scenario 1 Results:
 
 
 Scenario 2 Results:
-
+The results from scenario 2 show that keeping the room volume at 132 m^3, the exposure time at 30 minutes, but changing the number of infected individuals to 2 will drastically change the probability of infection. This is shown above, and we can see that the distribution is a lot more spread out. We can see that more simulations ended up with higher probability of infection. Contracting the flu became the most likely to contract, with much higher probability, then measles, and the simulations showed that TB was still lower probability among all three. 
 
 
 Limitations:
