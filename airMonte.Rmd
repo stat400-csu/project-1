@@ -315,46 +315,6 @@ https://link.springer.com/article/10.1007/s12273-020-0703-5
 
 
 
-```{r summary results}
-sum_disease <- tibble::tibble(
-  Disease=c("TB","Flu", "Meas", "SARS"),
-  Mean_Prob = c(TB$summary$mean_prob,
-                Flu$summary$mean_prob,
-                Meas$summary$mean_prob,
-                SARS$summary$mean_prob),
-  Mean_Infections = c(TB$summary$mean_infections,
-                      Flu$summary$mean_infections,
-                      Meas$summary$mean_infections,
-                      SARS$summary$mean_infections),
-  Prob_25 = c(TB$summary$prob_quantiles[1],
-              Flu$summary$prob_quantiles[1],
-              Meas$summary$prob_quantiles[1],
-              SARS$summary$prob_quantiles[1]),
-  Prob_50 = c(TB$summary$prob_quantiles[2],
-              Flu$summary$prob_quantiles[2],
-              Meas$summary$prob_quantiles[2],
-              SARS$summary$prob_quantiles[2]),
-  Prob_75 = c(TB$summary$prob_quantiles[3],
-              Flu$summary$prob_quantiles[3],
-              Meas$summary$prob_quantiles[3],
-              SARS$summary$prob_quantiles[3]),
-  Prob_90 = c(TB$summary$prob_quantiles[4],
-              Flu$summary$prob_quantiles[4],
-              Meas$summary$prob_quantiles[4],
-              SARS$summary$prob_quantiles[4]),
-  Prob_95 = c(TB$summary$prob_quantiles[5],
-              Flu$summary$prob_quantiles[5],
-              Meas$summary$prob_quantiles[5],
-              SARS$summary$prob_quantiles[5])
-)
-
-sum_dis_round <- sum_disease %>%
-  mutate(across(where(is.numeric), ~ round(.x,3)))
-
-sum_dis_round
-
-```
-
 ```{r summary}
 
 ## The monte carlo simulation results estimate the infection risk for four airborne disease in a standard waiting room scenario. 
