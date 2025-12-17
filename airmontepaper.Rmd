@@ -49,7 +49,59 @@ compare_table <- data.frame(TB = c("Beggs_TB",
 compare_table
 ```
 
+## SARS Findings:
+
+On top of trying to replicate their monte carlo model, we also wanted to test out the model with another infectious disease. We researched the SARS disease. *Mikszewski et al* wrote in a National Library of Medicine article that the estimate of infectious rate is about 2.7 quanta per hour with a standard deviation of 1.2 quanta. 
+
+## report the mean probability that was found and insert the histogram.
+
+
 ## Scenario 1 & 2 Findings:
+
+```{r scenario code, echo = FALSE}
+scenario_monte <- function(m = 10000, dis_quantaS, quanta_sdS, room_vol = 300, 
+                         infected_individuals = 1, ACH = 4, t_scen = max(rnorm(1, mean = 1, sd = 0.167))){ 
+  prob_inf <- numeric(m)
+  num_infec <- numeric(m)
+  sus_per <- numeric(m)
+
+  for(i in 1:m) {
+    
+    p_scen <- max(rnorm(1, mean = 0.48, sd = 0.20), 0)
+    phi_scen <- max(rnorm(1, mean = dis_quantaS, sd = quanta_sdS),0)
+    S0_scen <- max(round(rnorm(1, mean = 19, sd = 10)),1)
+    
+    q_2_scen <- infected_individuals * phi_scen
+ 
+    nucci_scen <- ((p_scen*q_2_scen)/room_vol) * 
+      ((ACH * t_scen + exp(-ACH * t_scen) -1) / (ACH^2))
+    
+    S_t_scen <- S0_scen * exp(-nucci_scen)
+    
+    exp_inf_scen <- S0_scen - S_t_scen
+    inf_scen <- rpois(1, lambda = exp_inf_scen)
+    
+    sus_prob_scen <- inf_scen / S0_scen
+    
+    prob_inf[i] <- sus_prob_scen
+    num_infec[i] <- inf_scen
+    sus_per[i] <- S_t_scen
+  }
+  
+  return(list(prob = prob_inf,
+              infections = num_infec,
+              survivors = sus_per,
+              summary = list(mean_prob = mean(prob_inf),
+                             mean_infections = mean(num_infec),
+                             prob_quantiles = quantile(prob_inf, 
+                                                       c(0.25, 0.5, 0.75, 
+                                                         0.9, 0.95)),
+                             inf_quantiles = quantile(num_infec, 
+                                                      c(0.25, 0.5, 0.75, 
+                                                        0.9, 0.95)))))
+
+}
+```
 
 We wanted to create 2 different scenarios where we can change a few variables in order to see what variables were the most impactful in effecting the infectious prediction rate. For the first scenario, we wanted to increase the room volume, as well as the exposure time. We did this to test if increasing the room size would decrease the infectious rate, or if the longer exposure time, regardless of the room size, would have a larger effect. We increased the room volume size from 132 $m^3$ to 300 $m^3$. We also increased the exposure rate of susceptible individuals by the infected from 30 seconds to 60 minutes. As a result of this experiment, our results showed: 
 
@@ -118,41 +170,22 @@ ggplot(comb_df2, aes(x=prob, fill=Disease, color=Disease)) +
 
 ```
 
-## SARS Findings:
-
-On top of trying to replicate their Monte Carlo model, we also wanted to test out the model with another infectious disease. We researched the SARS disease. *Mikszewski et al* wrote in a National Library of Medicine article that the estimate of infectious rate is about 2.7 quanta per hour with a standard deviation of 1.2 quanta. Our tests showed that the mean probability resulted in, on the low mean probability of 0.153, and also had a moderate variability range from 0.072 to 0.369. 
-
-```{r graph}
-
-TB_df <- data.frame(prob=as.numeric(TB$prob), Disease="TB")
-Measles_df <- data.frame(prob=as.numeric(Measles$prob), Disease = "Measles")
-Influenza_df <- data.frame(prob=as.numeric(Influenza$prob), Disease = "Influenza")
-SARS_df <- data.frame(prob=as.numeric(SARS$prob), Disease="SARS")
-
-combined_df <- rbind(TB_df, Measles_df, Influenza_df, SARS_df)
-combined_df$prob <- pmin(pmax(combined_df$prob, 0),1)
-
-ggplot(combined_df, aes(x=prob, fill=Disease, color=Disease)) +
-  geom_histogram(aes(y= ..count.. / sum(..count..) * 100),
-                  bins=35, position="identity", alpha=0.4) +
-  labs(title="Prob. of Infection Distribution by Disease",
-       x = "Probability of Infection",
-       y = "Percentage of Simulations") +
-  scale_color_manual(values = c("TB" = "green", "Measles" = "magenta",
-                               "Influenza"="blue", "SARS"="yellow3")) +
-  scale_fill_manual(values = c("TB" = "green", "Measles" = "magenta",
-                               "Influenza"="blue", "SARS"="yellow3")) +
-  theme_minimal()
-
-```
-
-
-## report the mean probability that was found and insert the histogram.
-
 
  
 
 ## Discussion:
+
+Scenario 1 Results:
+
+
+
+Scenario 2 Results:
+
+
+
+Limitations:
+
+
 
 (Interpret results, limitations, where the scenarios could be applied)
  
