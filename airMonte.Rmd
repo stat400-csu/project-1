@@ -105,6 +105,8 @@ Flu <- air_monte(m=10000, quanta_mean=100, quanta_sd=25.0)
 Meas <- air_monte(m=10000, quanta_mean=570, quanta_sd=143.0)
 SARS <- air_monte(m=10000, quanta_mean=2.7, quanta_sd=1.2)
 
+TB
+
 ```
 
 
@@ -175,6 +177,8 @@ better_monte <- function(m = 10000, dis_quanta, quanta_sd, room_vol = 132,
 TB <- better_monte(10000, dis_quanta = 12.7, quanta_sd = 3.0,
                    room_vol = 132, infected_individuals = 1, 
                    ACH = 4)
+
+TB
 
 mean(TB$prob)
 
