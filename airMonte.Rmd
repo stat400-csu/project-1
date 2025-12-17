@@ -377,10 +377,10 @@ sum_dis_round
 
 TB_df <- data.frame(prob=as.numeric(TB$prob), Disease="TB")
 Measles_df <- data.frame(prob=as.numeric(Measles$prob), Disease = "Measles")
-Influenza_df <- data.frame(prob=as.numeric(Influenza$prob), Disease = "Influenza")
+Flu_df <- data.frame(prob=as.numeric(Flu$prob), Disease = "Flu")
 SARS_df <- data.frame(prob=as.numeric(SARS$prob), Disease="SARS")
 
-combined_df <- rbind(TB_df, Measles_df, Influenza_df, SARS_df)
+combined_df <- rbind(TB_df, Measles_df, Flu_df, SARS_df)
 combined_df$prob <- pmin(pmax(combined_df$prob, 0),1)
 
 ggplot(combined_df, aes(x=prob, fill=Disease, color=Disease)) +

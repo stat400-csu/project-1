@@ -177,7 +177,7 @@ ggplot(comb_df2, aes(x=prob, fill=Disease, color=Disease)) +
 
 ## Conclusion:
 
-Limitations: After completing our own replication of the researchers' Monte Carlo model, we took away that the higher the quanta rate that an airborne disease has, or the higher the infection rate is, the more impact it has on infecting people, regardless of other factors like room size, exposure time, and infected personnel. One limitation that we had when faced with everything was that neither of us have a lot of scientific knowledge and understanding. A lot of background research had to go into what even the researchers were talking about, to be able to break down into ideas we could understand and try to replicate. 
+After completing our own replication of the researchers' Monte Carlo model, our take away was that the higher the quanta rate that an airborne disease has, or the higher the infection rate, the more impact it has on infecting people, regardless of other factors like room size, exposure time, and infected personnel. One limitation that we had when faced with everything was that neither of us have a lot of scientific knowledge and understanding. A lot of background research had to go into what even the researchers were talking about, to be able to break down into ideas we could understand and try to replicate. It was also difficult to imaging the room volumes and being able to tell of the room size they used was even a normal sized room or not. Overall, most of our predictions were correct where the number of infected people has more of an infection rate over changing the room size or exposure time. 
 
 
 
